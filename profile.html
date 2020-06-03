@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+
+	<title>Rede+Cientistas ::: Registro</title>
+	<link rel="icon" th:href="@{/image/favicon.ico}" />
+	<!-- Required meta tags -->
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="description" content="Rede Social para Cientistas" />
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+		integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+	<link rel="stylesheet" href="css/profile.css" type="text/css">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
+
+</head>
+
+<body>
+
+	<nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
+		<a class="navbar-brand pr-3 border-right" href="#"><img id="imgNavbar" src="img/logo.png"> Rede+Cientistas</a>
+		<div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+			<ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+				<li class="nav-item active">
+					<a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+				</li>
+			</ul>
+			<form class="form-inline my-2 my-lg-0">
+				<input class="form-control mr-sm-2" type="search" placeholder="Search">
+				<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+			</form>
+		</div>
+
+	</nav>
+	<div class="container-fluid">
+		<div class="row h-100">
+			<div class="col-8 h-100 border-right">
+				<h2 class="display-4 text-center py-4">Timeline</h2>
+				
+				<div class="card shadow mb-5 mx-4">
+					<div class="card-body">
+						<div class="input-group postBox">
+							<textarea class="form-control" aria-label="With textarea"></textarea>
+							<div class="input-group-append postBox">
+								<button class="input-group-text"><i class="fas fa-paper-plane px-3"></i></button>
+							  </div>
+						</div>
+						
+						
+					</div>
+				</div>
+				<!-- Primeiro post -->
+				<div class="card shadow mb-5 mx-4">
+					<div class="card-body">
+						<div class="media">
+							<img src="img/profile.jpg"
+								class="align-self-center mr-4 shadow rounded-circle timeline-profile-image" alt="">
+							<div class="media-body">
+								<h5 class="mt-0">Center-aligned media</h5>
+								<p>Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante
+									sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis.
+									Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in
+									faucibus.</p>
+								<p class="mb-0">Donec sed odio dui. Nullam quis risus eget urna mollis ornare vel eu
+									leo. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur
+									ridiculus mus.</p>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- Segundo post -->
+				<div class="card shadow mb-5 mx-4">
+					<div class="card-body">
+						<div class="media">
+							<img src="img/profile.jpg"
+								class="align-self-center mr-4 shadow rounded-circle timeline-profile-image" alt="">
+							<div class="media-body">
+								<h5 class="mt-0">Center-aligned media</h5>
+								<p>Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante
+									sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis.
+									Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in
+									faucibus.</p>
+								<p class="mb-0">Donec sed odio dui. Nullam quis risus eget urna mollis ornare vel eu
+									leo. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur
+									ridiculus mus.</p>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- Terceiro post -->
+				<div class="card ownPost mb-5 mx-4">
+					<div class="card-body">
+						<div class="media">
+							<img src="img/profile.jpg"
+								class="align-self-center mr-4 shadow rounded-circle timeline-profile-image" alt="">
+							<div class="media-body">
+								<h5 class="mt-0">Center-aligned media</h5>
+								<p>Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante
+									sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis.
+									Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in
+									faucibus.</p>
+								<p class="mb-0">Donec sed odio dui. Nullam quis risus eget urna mollis ornare vel eu
+									leo. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur
+									ridiculus mus.</p>
+							</div>
+							<div class="buttonContainer d-flex flex-column">
+								<button class=" ownPost-edit-button  btn btn-primary btn-md mb-2 ml-3"><i class="far fa-edit"></i></button>
+								<button class=" ownPost-delete-button btn btn-danger btn-md ml-3"><i class="fas fa-trash-alt"></i></button>
+							</div>
+				
+							
+						</div>
+						
+					</div>
+				</div>
+
+			</div>
+
+
+			<div class="col-4 h-100">
+				<h2 class="display-4 text-center py-4">Perfil</h2>
+				<div class="card py-5">
+					<div class="card-body d-flex flex-column">
+						<img src="img/profile.jpg" class="align-self-center shadow rounded-circle profile-image" alt="">
+						<h4 class="text-center py-2">Henrique Yudi Yassuda Nishimoto</h4>
+						<p id="idade" class="text-center m-0">28 anos</p>
+						<p id="cidade-estado" class="text-center m-0">São Paulo,SP</p>
+						<p id="nivel-curso" class="text-center m-0">Graduado em Administração</p>
+						<p id="universidade" class="text-center m-0">Universidade Presbiteriana Mackenzie</p>
+
+					</div>
+				  </div>
+
+			</div>
+		</div>
+	</div>
+
+	 <!-- Fonts Awesome -->
+	 <script src="https://kit.fontawesome.com/3741ec6fe2.js" crossorigin="anonymous"></script>
+	 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+	 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+		 integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+		 crossorigin="anonymous"></script>
+	 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+		 integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+		 crossorigin="anonymous"></script>
+	 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+		 integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+		 crossorigin="anonymous"></script>
+</body>
+
+</html>
