@@ -3,13 +3,14 @@
 const mongoose = require("mongoose");
 
 // Replace this with your MONGOURI.
-const MONGOURI = " mongodb+srv://yudi:henrique@cluster0-6g67m.mongodb.net/rede   ";
+const MONGOURI = " mongodb+srv://yudi:henrique@cluster0-6g67m.mongodb.net/rede";
 // mongo "mongodb+srv://cluster0-6g67m.mongodb.net/<dbname>" --username yudi
 
 const InitiateMongoServer = async () => {
   try {
     await mongoose.connect(MONGOURI, {
-      useNewUrlParser: true
+      useNewUrlParser: true,
+      useUnifiedTopology: true
     });
     console.log("Connected to DB !!");
   } catch (e) {

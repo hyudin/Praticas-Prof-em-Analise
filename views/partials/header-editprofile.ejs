@@ -3,7 +3,7 @@
 
 <head>
 
-	<title>Rede+Cientistas ::: Registro</title>
+	<title>Rede+Cientistas ::: Perfil</title>
 	<link rel="icon" th:href="@{/image/favicon.ico}" />
 	<!-- Required meta tags -->
 	<meta charset="utf-8">
@@ -15,6 +15,7 @@
 		integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
 	<link rel="stylesheet" href="/css/profile.css" type="text/css">
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
+	<script src="/js/cidades-estados.js"></script>
 
 </head>
 
@@ -24,12 +25,12 @@
 		<a class="navbar-brand pr-3 border-right" href="#"><img id="imgNavbar" src="/css/img/logo.png"> Rede+Cientistas</a>
 		<div class="collapse navbar-collapse" id="navbarTogglerDemo02">
 			<ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-				<li class="nav-item active">
-					<a class="nav-link" href="/profile/<%= user.email %>">Home <span class="sr-only">(current)</span></a>
-				</li>
+				<% user.forEach(function(user){ %>
 				<li class="nav-item">
-					<% user.forEach(function(user){ %>
-					<a class="nav-link" href="/profile/<%= user.email %>/edit">Editar Perfil <span class="sr-only"></span></a>
+					<a class="nav-link" href="/profile/<%= user.email %>">Home <span class="sr-only"></span></a>
+				</li>
+				<li class="nav-item active">
+					<a class="nav-link" href="/profile/<%= user.email %>/edit">Editar Perfil <span class="sr-only">(current)</span></a>
 					<% }); %>
 				</li>
 			</ul>

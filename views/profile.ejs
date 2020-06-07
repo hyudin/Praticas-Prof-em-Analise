@@ -24,77 +24,23 @@
 						<img src="/css/img/profile.jpg"	
 							class="align-self-center mr-4 shadow rounded-circle timeline-profile-image" alt="">
 						<div class="media-body">
-							<h5 class="mt-0 mb-0">Nome do usuário</h5>
+							<h5 class="mt-0 mb-0">Nome do usuário<%= post._id %></h5>
 							<p style="font-size: 0.8em; mb-2"><%= post.created.toDateString()+" - "+ (post.created.toTimeString()).substring(0,9) %></p>
 							<p class="mb-0"><%= post.postText %></p>
 						</div>
-						<i class="far fa-thumbs-up"></i>
+						<div class="d-flex flex-column">
+							<button type="submit" action=""class="btn btn-primary m-2"><i class="far fa-thumbs-up "></i></button>
+							<button type="submit" class="btn btn-secondary m-2"><i class="far fa-edit "></i></button>
+							<form action="profile/<% post._id %>?method=DELETE" method="POST">
+							<button type="submit" class="btn btn-danger m-2"><i class="far fa-trash-alt"></i></button>
+							</form>
+						</div>
 					</div>
 				</div>
 			</div>
 			<% }); %>
 
-				<!-- Primeiro post
-				<div class="card shadow mb-5 mx-4">
-					<div class="card-body">
-						<div class="media">
-							<img src="img/profile.jpg"
-								class="align-self-center mr-4 shadow rounded-circle timeline-profile-image" alt="">
-							<div class="media-body">
-								<h5 class="mt-0">Center-aligned media</h5>
-								<p>Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante
-									sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis.
-									Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in
-									faucibus.</p>
-								<p class="mb-0">Donec sed odio dui. Nullam quis risus eget urna mollis ornare vel eu
-									leo. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur
-									ridiculus mus.</p>
-							</div>
-						</div>
-					</div>
-				</div>
-				Segundo post
-				<div class="card shadow mb-5 mx-4">
-					<div class="card-body">
-						<div class="media">
-							<img src="img/profile.jpg"
-								class="align-self-center mr-4 shadow rounded-circle timeline-profile-image" alt="">
-							<div class="media-body">
-								<h5 class="mt-0">Center-aligned media</h5>
-								<p>Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante
-									sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis.
-									Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in
-									faucibus.</p>
-								<p class="mb-0">Donec sed odio dui. Nullam quis risus eget urna mollis ornare vel eu
-									leo. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur
-									ridiculus mus.</p>
-							</div>
-						</div>
-					</div>
-				</div>
-				Terceiro post
-				<div class="card ownPost mb-5 mx-4">
-					<div class="card-body">
-						<div class="media">
-							<img src="img/profile.jpg"
-								class="align-self-center mr-4 shadow rounded-circle timeline-profile-image" alt="">
-							<div class="media-body">
-								<h5 class="mt-0">Center-aligned media</h5>
-								<p></p>
-								<p class="mb-0">Donec sed odio dui. Nullam quis risus eget urna mollis ornare vel eu
-									leo. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur
-									ridiculus mus.</p>
-							</div>
-							<div class="buttonContainer d-flex flex-column">
-								<button class=" ownPost-edit-button  btn btn-primary btn-md mb-2 ml-3"><i class="far fa-edit"></i></button>
-								<button class=" ownPost-delete-button btn btn-danger btn-md ml-3"><i class="fas fa-trash-alt"></i></button>
-							</div>
 				
-							
-						</div>
-						
-					</div>
-				</div> -->
 
 			</div>
 

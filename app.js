@@ -1,4 +1,5 @@
 var bodyParser = require("body-parser"),
+    methodOverride = require("method-override"),
     express = require("express"),
     app = express()
 // userRouter          = require('./routes/userRoutes.js');
@@ -16,6 +17,7 @@ app.set("view engine", "ejs");
 app.use(express.static("public"));
 app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(methodOverride("_method"));
 // app.use(userRouter);
 
 app.get("/", function (req, res) {
@@ -112,105 +114,50 @@ app.post("/profile", function (req, res) {
         if (err) {
             console.log("error");
         } else {
-            res.redirect("/profile");
+            res.redirect("profile");
             console.log(newPost);
         }
     });
-})
-
-// app.post("/cadastro", function(req,res){
-//     // pega os dados do cadastro e adiciona para array do profile
-//     var name = req.body.name;
-//     var email = req.body.email;
-//     var age = req.body.age;
-//     var city = req.body.city;
-//     var state = req.body.state;
-//     var course = req.body.course;
-//     var university = req.body.university;
-//     var password = req.body.password;
-//     var newProfile = {name: name, email: email, age: age, city: city, state: state, course: course, university: university, password: password}
-//     Profile.create(newProfile, function(err, newlyCreated){
-//         if(err){
-//             console.log(err);
-//         } else {
-//             console.log("HI")
-//             res.redirect("/");
-//         }
-//     });
-// });
-
-// app.get("/profile", function(req,res){
-//     // Profile.find({}, function(err, profile){
-//     //     if(err){
-//     //         console.log(err);
-//     //     } else {
-//     //         res.render("profile", {profile:profile});
-//     //         }
-//     //     });
-
-
-
-//     var profiles = [
-//         {
-//          image: "/css/img/profile.jpg",
-//          name: "Henrique Yudi Yassuda Nishimoto",
-//          age: "28",
-//          city: "São Paulo",
-//          state: "SP",
-//          course: "Administração",
-//          university: "Universidade Presbiteriana Mackenzie"}
-//     ]   
-//     res.render("profile", {profiles:profiles});
-//  });
-
-// var mongoose = require("mongoose");
-// mongoose.connect("mongodb://localhost:27017")
-
-var profileSchema = new mongoose.Schema({
-    name: String,
-    email: String,
-    age: Number,
-    city: String,
-    state: String,
-    course: String,
-    university: String,
-    password: String,
 });
 
-var Profile = mongoose.model("Profile", profileSchema);
 
+//=================EDIT ROUTE===================
+app.get("/profile/:email/edit",function(req,res){
+    User.find({email:req.params.email}, function(err, foundUser){
+        if(err){
+            console.log("ERRO USUÁRIO NÃO ENCONTRADO!");
+        } else {
+            res.render("editprofile", {user:foundUser});
+        }
 
-// //Cria um novo 
-// var henrique = new Profile({
-// name: "Henrique Yudi Yassuda Nishimoto",
-// age: 28,
-// city: "São Paulo",
-// state: "São Paulo",
-// course: "Administração",
-// university: "Universidade Presbiteriana Mackenzie",
-// password: "henrique"
-// });
-
-// //salvar na database
-// henrique.save(function(err, profile){
-//     if(err){
-//         console.log("Something went wrong");
-//     } else{
-//         console.log("O perfil foi salvo:");
-//         console.log(profile);
-//     }
-// });
-
-// //retornar profiles do database
-Profile.find({}, function (err, profile) {
-    if (err) {
-        console.log("Foi encontrado um erro");
-        console.log(err);
-    } else {
-        console.log("Todos perfis:...");
-        console.log(profile);
-    }
+    })
 });
+
+
+//================UPDATE ROUTE===================
+app.put("/profile/:email",function(req,res){
+    User.findOneAndUpdate(req.params.email, req.body.user, function(err,foundUser){
+        if(err){
+            res.redirect("/profile"); 
+        }   else {
+            res.redirect("/profile/" + req.params.email);
+        }
+
+    });
+});
+app.get("/cadastro",function(req,res){
+    res.render("cadastro");
+});
+
+
+//================DELETE ROUTE====================
+app.delete("/profile/:id/post/",function(req,res){
+    res.send("DELETAR POST");
+});
+
+
+
+
 
 async function listDatabases(client) {
     databasesList = await client.db().admin().listDatabases();
