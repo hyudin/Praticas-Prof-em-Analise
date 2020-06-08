@@ -1,38 +1,54 @@
 <%- include('partials/header-profile') -%>
-	<div class="container-fluid">
-		<div class="row h-100">
-			<div class="col-8 h-100 border-right">
-				<h2 class="display-4 text-center py-4">Timeline</h2>
-				<form action="/profile" method="POST">
+<div class="container-fluid">
+	<div class="row h-100">
+		<div class="col-8 h-100 border-right">
+			<h2 class="display-4 text-center py-4">Timeline</h2>
+			<% user.forEach(function(user){ %>
+			<form action="/profile/<%= user.email %>" method="POST">
 				<div class="card shadow mb-5 mx-4">
 					<div class="card-body">
 						<div class="input-group postBox">
-							
-							<textarea id="newpost[postText]" name="newpost[postText]"class="form-control" aria-label="With textarea"></textarea>
+							<input type="text" id="newpost[authorName]" name="newpost[authorName]" class="form-control" style="display:none" value="<%= user.name %>" autofocus
+							required>
+							<input type="text" id="newpost[authorEmail]" name="newpost[authorEmail]" class="form-control" style="display:none" value="<%= user.email %>" autofocus
+                            required>
+							<textarea id="newpost[postText]" name="newpost[postText]" class="form-control"
+								aria-label="With textarea"></textarea>
 							<div class="input-group-append postBox">
-								<button type="submit" class="input-group-text"><i class="fas fa-paper-plane px-3"></i></button>
+								<button type="submit" class="input-group-text"><i
+										class="fas fa-paper-plane px-3"></i></button>
 							</div>
-						</div>	
+						</div>
 					</div>
 				</div>
 			</form>
+			<% }); %>
 
 			<% posts.forEach(function(post){ %>
 			<div class="card shadow mb-5 mx-4">
 				<div class="card-body">
 					<div class="media">
-						<img src="/css/img/profile.jpg"	
+						<img src="/css/img/profile.jpg"
 							class="align-self-center mr-4 shadow rounded-circle timeline-profile-image" alt="">
 						<div class="media-body">
-							<h5 class="mt-0 mb-0">Nome do usuário<%= post._id %></h5>
-							<p style="font-size: 0.8em; mb-2"><%= post.created.toDateString()+" - "+ (post.created.toTimeString()).substring(0,9) %></p>
+							<h5 class="mt-0 mb-0"><%= post.authorName %></h5>
+							<p style="font-size: 0.8em;">
+								<%= post.created.toDateString()+" - "+ (post.created.toTimeString()).substring(0,9) %>
+							</p>
 							<p class="mb-0"><%= post.postText %></p>
+							<label class="mt-5"><i class="fas fa-thumbs-up mr-2"></i><%= post.likes %></label>
 						</div>
 						<div class="d-flex flex-column">
-							<button type="submit" action=""class="btn btn-primary m-2"><i class="far fa-thumbs-up "></i></button>
+							<button type="submit" action="" class="btn btn-primary m-2"><i
+									class="far fa-thumbs-up "></i></button>
 							<button type="submit" class="btn btn-secondary m-2"><i class="far fa-edit "></i></button>
-							<form action="profile/post/<% post._id %>?method=DELETE" method="POST">
-							<button type="submit" class="btn btn-danger m-2"><i class="far fa-trash-alt"></i></button>
+							<% user.forEach(function(user){ %>
+							<form action="/profile/<%= user.email %>?_method=DELETE" method="POST">
+								<% }); %>
+								<input type="text" id="post[id]" name="post[id]" class="form-control" style="display:none" value="<%= post.id %>" autofocus
+                            required>
+								<button type="submit" class="btn btn-danger m-2"><i
+										class="far fa-trash-alt px-1"></i></button>
 							</form>
 						</div>
 					</div>
@@ -40,42 +56,43 @@
 			</div>
 			<% }); %>
 
-				
 
+
+		</div>
+
+
+		<div class="col-4 h-100">
+			<h2 class="display-4 text-center py-4">Perfil</h2>
+			<div class="card py-5">
+				<% user.forEach(function(user){ %>
+				<div class="card-body d-flex flex-column">
+					<img src="<%= user.image %>" class="align-self-center shadow rounded-circle profile-image" alt="">
+					<h4 id="username" name="username" class="text-center py-2"><%= user.name %></h4>
+					<p id="email" name="email" class="text-center m-0"><%= user.email %></p>
+					<p id="idade" class="text-center m-0"><%= user.age %></p>
+					<p id="cidade-estado" class="text-center m-0"><%= user.city %>,<%= user.state %></p>
+					<p id="nivel-curso" class="text-center m-0">Graduado em <%= user.course %></p>
+					<p id="universidade" class="text-center m-0"><%= user.university %></p>
+				</div>
+				<% }); %>
 			</div>
 
-
-			<div class="col-4 h-100">
-				<h2 class="display-4 text-center py-4">Perfil</h2>
-				<div class="card py-5">
-					<% user.forEach(function(user){ %>
-					<div class="card-body d-flex flex-column">
-						<img src = "<%= user.image %>" class="align-self-center shadow rounded-circle profile-image" alt="">
-						<h4 class="text-center py-2"><%= user.name %></h4>
-						<p id="idade" class="text-center m-0"><%= user.age %></p>
-						<p id="cidade-estado" class="text-center m-0"><%= user.city %>,<%= user.state %></p>
-						<p id="nivel-curso" class="text-center m-0">Graduado em <%= user.course %></p>
-						<p id="universidade" class="text-center m-0"><%= user.university %></p>
-					</div>
-					<% }); %>
-				  </div>
-
-			</div>
 		</div>
 	</div>
+</div>
 
-	 <!-- Fonts Awesome -->
-	 <script src="https://kit.fontawesome.com/3741ec6fe2.js" crossorigin="anonymous"></script>
-	 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-	 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
-		 integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
-		 crossorigin="anonymous"></script>
-	 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
-		 integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
-		 crossorigin="anonymous"></script>
-	 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
-		 integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
-		 crossorigin="anonymous"></script>
+<!-- Fonts Awesome -->
+<script src="https://kit.fontawesome.com/3741ec6fe2.js" crossorigin="anonymous"></script>
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+	integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+	crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+	integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+	crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+	integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+	crossorigin="anonymous"></script>
 </body>
 
 </html>
