@@ -153,7 +153,7 @@ app.put("/profile/:email/like/:id", function (req, res) {
             console.log(err);
         }   else{
             console.log("LIKE");
-            res.redirect(req.params.email);
+            res.redirect('back');
         }
     });
 });
