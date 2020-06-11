@@ -158,6 +158,45 @@ app.put("/profile/:email/like/:id", function (req, res) {
     });
 });
 
+//EDITAR POST
+
+app.get("/profile/:email/post/:id/edit", function (req, res) {
+    User.find({email: req.params.email}, function (err, user) {
+        console.log("============================================")
+        console.log(req.params.id)
+        if (err) {
+            console.log("Erro ao carregar dados do usuário");
+        } else {
+            // res.render("profile", {user:user});
+            console.log(user);
+
+            Post.find({_id: req.params.id}, function (err, post) {
+                if (err) {
+                    console.log(err);
+                    console.log("Erro ao carregar posts!");
+                } else {
+                    res.render("postedit", { post: post, user: user });
+                }
+
+            });
+        }
+    });
+});
+
+app.put("/profile/:email/post/:id/edit", function (req, res) {
+    console.log("OI");
+    console.log(req.body.post);
+    Post.findByIdAndUpdate(req.params.id, req.body.post ,function(err){
+        if(err){
+            console.log(err);
+        }   else{
+            console.log("LIKE");
+            res.redirect("/profile/" + req.params.email);
+        }
+    });
+});
+
+
 app.get("/cadastro", function (req, res) {
     res.render("cadastro");
 });
