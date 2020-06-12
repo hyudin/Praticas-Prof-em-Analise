@@ -1,0 +1,38 @@
+<%- include('partials/header-editprofile') -%>
+<div class="container-fluid">
+    <div class="row h-100">
+        <div class="col-2"></div>
+        <div class="col-8 h-100">
+            <div class="card py-5 row justify-content-center">
+
+                <% user.forEach(function(user){ %>
+                <% post.forEach(function(post){ %>
+                <form class="form-horizontal" style="margin:auto; width:60%" role="form" action="/profile/<%= user.email %>/post/<%= post.id %>/edit?_method=PUT" method="POST">
+                    <h3 class="display-4 text-center py-4">EDITAR POST</h3>
+                    <textarea contenteditable="true" id="post[postText]" name="post[postText]" class="form-control mb-4" style="min-height: 200px;" value="<%= post.postText %>"><%= post.postText %></textarea>
+                    
+                    <button type="submit" class=" btn btn-primary"><i id="btnSaveImage" class="fas fa-save"></i>  Salvar</button>
+                </form>
+                <% }); %>
+                <% }); %>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!-- Fonts Awesome -->
+<script src="https://kit.fontawesome.com/3741ec6fe2.js" crossorigin="anonymous"></script>
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+    integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+    crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+    integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+    crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+    integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+    crossorigin="anonymous"></script>
+</body>
+
+</html>
