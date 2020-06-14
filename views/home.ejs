@@ -7,16 +7,17 @@
             <div id="loginContainer" class="col-4 p-5 align-self-center border-right">
                 <h4>Olá Cientista de dados!</h4>
                 <p>Seja bem-vindo a uma rede social dedicada a você!</p>
+                <li><a href="/logout">Logout!</a></li>
                 <!-- Entrada Texto Email e Password -->
-                <form>
+                <form action="/home" method="POST">
                     <div class="form-group">
                         <label for="exampleInputEmail1">Email</label>
-                        <input type="email" placeholder="Email" class="form-control shadow-lg" id="exampleInputEmail1"
+                        <input type="text" placeholder="username" name="username" class="form-control shadow-lg" id="exampleInputEmail1"
                             aria-describedby="emailHelp">
                     </div>
                     <div class="form-group">
                         <label for="exampleInputPassword1">Senha</label>
-                        <input type="password" placeholder="Senha" class="form-control shadow-lg"
+                        <input type="password" placeholder="password" name ="password" class="form-control shadow-lg"
                             id="exampleInputPassword1">
                     </div>
                     <div></div>
