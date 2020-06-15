@@ -3,7 +3,7 @@
 
 <head>
 
-	<title>Rede+Cientistas ::: Registro</title>
+	<title>Rede+Cientistas ::: Amigos</title>
 	<link rel="icon" th:href="@{/image/favicon.ico}" />
 	<!-- Required meta tags -->
 	<meta charset="utf-8">
@@ -26,20 +26,18 @@
 			Rede+Cientistas</a>
 		<div class="collapse navbar-collapse" id="navbarTogglerDemo02">
 			<ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-				<li class="nav-item active">
-					<a class="nav-link" href="/profile/<%= useremail %>">Home <span
-							class="sr-only">(current)</span></a>
+				<li class="nav-item ">
+					<a class="nav-link" href="/profile/<%= useremail %>">Home <span class="sr-only"></span></a>
 				</li>
-				
 				<li class="nav-item">
 					<a class="nav-link" href="/profile/<%= useremail %>/edit">Editar Perfil <span
 							class="sr-only"></span></a>
 				</li>
-				<li class="nav-item">
+				<li class="nav-item ">
 					<a class="nav-link" href="/profile/<%= useremail %>/friends">Amigos<span
-							class="sr-only"></span></a>
+							class="sr-only">(current)</span></a>
 				</li>
-				<li class="nav-item">
+				<li class="nav-item active">
 					<a class="nav-link" href="/profile/<%= useremail %>/Pesquisadores">Pesquisadores<span
 							class="sr-only"></span></a>
 				</li>
