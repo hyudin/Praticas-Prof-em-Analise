@@ -79,6 +79,7 @@
 			<div class="card py-5">
 				<% user.forEach(function(user){ %>
 				<div class="card-body d-flex flex-column">
+					
 					<img src="<%= user.image %>" class="align-self-center shadow rounded-circle profile-image" alt="">
 					<h4 id="username" name="username" class="text-center py-2"><%= user.name %></h4>
 					<p id="email" name="email" class="text-center m-0"><%= user.email %></p>
@@ -86,6 +87,8 @@
 					<p id="cidade-estado" class="text-center m-0"><%= user.city %>,<%= user.state %></p>
 					<p id="nivel-curso" class="text-center m-0">Graduado em <%= user.course %></p>
 					<p id="universidade" class="text-center m-0"><%= user.university %></p>
+					<div style="display: none;"><%= userid = user._id %>
+					<% userFriends = user.friends %></div>
 				</div>
 				<% }); %>
 			</div>

@@ -1,11 +1,11 @@
-<%- include('partials/header-friends') -%>
+<%- include('partials/header-pesquisadores') -%>
 <div class="container-fluid">
-    <h3 class="display-3 text-center mb-5">Amigos</h3>
+    <h3 class="display-3 text-center mb-5">Pesquisadores</h3>
     <div class="row h-100">
         <% user.forEach(function(user){ %>
-        <% userFriends = user.friends %>
+            <% userFriends = user.friends %>
         <% }); %>
-        <% friends.forEach(function(user){ %>
+        <% users.forEach(function(user){ %>
         <div class="col-3 h-100 border-right">
             <div class="card shadow mb-5 mx-4">
                 <div class="card-body" style="height: 490px;">
@@ -18,8 +18,8 @@
                     <p id="cidade-estado" class="text-center m-0"><%= user.city %>,<%= user.state %></p>
                     <p id="nivel-curso" class="text-center m-0">Graduado em <%= user.course %></p>
                     <p id="universidade" class="text-center m-0"><%= user.university %></p>
-                    <form action="/profile/<%= useremail %>/friends/<%= user.email %>/unfollow?_method=PUT" method="POST">
-                        <button type="submit" class="btn mx-auto d-block btn-primary m-2">Deixar de seguir</button>
+                    <form action="/profile/<%= useremail %>/friends/<%= user.email %>/follow?_method=PUT" method="POST">
+                        <button type="submit" class="btn mx-auto d-block btn-primary m-2">Seguir</button>
                     </form>
                 </div>
             </div>
