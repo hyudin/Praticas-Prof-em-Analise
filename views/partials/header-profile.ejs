@@ -15,24 +15,33 @@
 		integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
 	<link rel="stylesheet" href="/css/profile.css" type="text/css">
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
-	
+
 
 </head>
 
 <body>
 
 	<nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
-		<a class="navbar-brand pr-3 border-right" href="#"><img id="imgNavbar" src="/css/img/logo.png"> Rede+Cientistas</a>
+		<a class="navbar-brand pr-3 border-right" href="#"><img id="imgNavbar" src="/css/img/logo.png">
+			Rede+Cientistas</a>
 		<div class="collapse navbar-collapse" id="navbarTogglerDemo02">
 			<ul class="navbar-nav mr-auto mt-2 mt-lg-0">
 				<li class="nav-item active">
-					<a class="nav-link" href="/profile/<%= user.email %>">Home <span class="sr-only">(current)</span></a>
+					
+						
+					<a class="nav-link" href="/profile/<%= useremail %>">Home <span
+							class="sr-only">(current)</span></a>
+				</li>
+				
+				<li class="nav-item">
+					<a class="nav-link" href="/profile/<%= useremail %>/edit">Editar Perfil <span
+							class="sr-only"></span></a>
 				</li>
 				<li class="nav-item">
-					<% user.forEach(function(user){ %>
-					<a class="nav-link" href="/profile/<%= user.email %>/edit">Editar Perfil <span class="sr-only"></span></a>
-					<% }); %>
+					<a class="nav-link" href="/profile/<%= useremail %>/friends">Amigos<span
+							class="sr-only">(current)</span></a>
 				</li>
+				
 			</ul>
 			<form class="form-inline my-2 my-lg-0">
 				<input class="form-control mr-sm-2" type="search" placeholder="Search">

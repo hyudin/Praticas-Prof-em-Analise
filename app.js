@@ -28,7 +28,9 @@ app.get("/", function (req, res) {
 });
 
 var mongoose = require("mongoose");
+const { request } = require("express");
 // var shortid = require("shortid");
+app.locals.useremail;
 
 
 
@@ -59,6 +61,7 @@ app.get("/profile", function (req, res) {
 
 // =================== SHOW ROUTE =====================
 app.get("/profile/:email", function (req, res) {
+    useremail = req.params.email;
     User.find({ email: req.params.email }, function (err, foundUser) {
         if (err) {
             console.log(err);
@@ -71,12 +74,17 @@ app.get("/profile/:email", function (req, res) {
                     // console.log("Usuário encontrado");
                     // console.log(foundUser);
                     res.render("profile", { posts: posts, user: foundUser });
+                    
                 }
 
             });
         }
     })
 });
+
+app.get('/showMyId',function(req,response,next){
+    response.send(useremail);
+  });
 
 //=================== NEW ROUTE ======================
 
@@ -87,7 +95,7 @@ app.post("/profile/:email", function (req, res) {
         if (err) {
             console.log(err);
         } else {
-            res.redirect(req.params.email);
+            res.redirect(useremail);
             console.log(newPost);
         }
     });
@@ -97,7 +105,7 @@ app.post("/profile/:email", function (req, res) {
 
 //=================EDIT ROUTE===================
 app.get("/profile/:email/edit", function (req, res) {
-    User.find({ email: req.params.email }, function (err, foundUser) {
+    User.find({ email: useremail }, function (err, foundUser) {
         if (err) {
             console.log("ERRO USUÁRIO NÃO ENCONTRADO!");
         } else {
@@ -113,11 +121,11 @@ app.get("/profile/:email/edit", function (req, res) {
 
 //================UPDATE ROUTE===================
 app.put("/profile/:email", function (req, res) {
-    User.findOneAndUpdate(req.params.email, req.body.user, function (err, foundUser) {
+    User.findOneAndUpdate(useremail, req.body.user, function (err, foundUser) {
         if (err) {
             res.redirect("/profile");
         } else {
-            res.redirect("/profile/" + req.params.email);
+            res.redirect("/profile/" + useremail);
         }
 
     });
@@ -161,7 +169,7 @@ app.put("/profile/:email/like/:id", function (req, res) {
 //EDITAR POST
 
 app.get("/profile/:email/post/:id/edit", function (req, res) {
-    User.find({email: req.params.email}, function (err, user) {
+    User.find({email: useremail}, function (err, user) {
         console.log("============================================")
         console.log(req.params.id)
         if (err) {
@@ -191,7 +199,7 @@ app.put("/profile/:email/post/:id/edit", function (req, res) {
             console.log(err);
         }   else{
             console.log("LIKE");
-            res.redirect("/profile/" + req.params.email);
+            res.redirect("/profile/" + useremail);
         }
     });
 });
@@ -215,7 +223,7 @@ app.delete("/profile/:email", function (req, res) {
         if(err){
             console.log(err);
         }   else{
-            res.redirect(req.params.email);
+            res.redirect(useremail);
         }
     });
     
@@ -238,6 +246,80 @@ app.delete("/profile/:email", function (req, res) {
     // })
 });
 
+
+// AMIGOS
+app.get("/profile/:email/friends", function (req, res) {
+    User.find({}, function (err, foundUsers) {
+        if (err) {
+            console.log("ERRO USUÁRIO NÃO ENCONTRADO!");
+        } else {
+            res.render("friends", { user: foundUsers });
+        }
+
+    })
+});
+
+app.get("/profile/:email/friends/:friendsemail/follow", function (req, res) {
+    User.post({}, function (err, foundUsers) {
+        if (err) {
+            console.log(err)
+        } else {
+            res.send(req.body.friendsemail)
+            // User.friends.append(req.body.friendsemail)
+            // res.render("friends", { user: foundUsers });
+        }
+
+    })
+});
+
+app.get("/profile/:email/friends/:friendsemail/follow", function (req, res) {
+    User.find({email: useremail}, function (err, user) {
+      
+        if (err) {
+            console.log("Erro ao carregar dados do usuário");
+        } else {
+            // res.render("profile", {user:user});
+            console.log(user);
+
+            User.find({email: req.params.friendsemail }, function (err, post) {
+                if (err) {
+                    console.log(err);
+                    console.log("Erro ao carregar posts!");
+                } else {
+                    console.log(req.params.friendsemail);
+                    res.render("postedit", { post: post, user: user });
+                }
+
+            });
+        }
+    });
+});
+
+app.put("/profile/:email/post/:id/edit", function (req, res) {
+    console.log("OI");
+    console.log(req.body.post);
+    Post.findByIdAndUpdate(req.params.id, req.body.post ,function(err){
+        if(err){
+            console.log(err);
+        }   else{
+            console.log("LIKE");
+            res.redirect("/profile/" + useremail);
+        }
+    });
+});
+
+app.put("/profile/:email/friends/:friendsemail/follow", function (req, res) {
+    User.findByIdAndUpdate(req.params.friendsemail, function (err, foundUsers) {
+        if (err) {
+            console.log(err)
+        } else {
+            res.send(req.body.friendsemail)
+            // User.friends.append(req.body.friendsemail)
+            // res.render("friends", { user: foundUsers });
+        }
+
+    })
+});
 
 
 
