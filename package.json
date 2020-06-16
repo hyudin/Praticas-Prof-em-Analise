@@ -1,9 +1,10 @@
 {
   "name": "site",
   "version": "1.0.0",
-  "description": "",
+  "description": "Rede",
   "main": "app.js",
   "scripts": {
+    "start": "node app.js",    
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -28,5 +29,8 @@
     "mongodb": "^3.5.8",
     "mongoose": "^5.9.17",
     "shortid": "^2.2.15"
+  },
+  "engines": {
+    "node": "10.x"
   }
 }
