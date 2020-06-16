@@ -4,7 +4,7 @@ var postSchema = new mongoose.Schema({
     authorName:{type: String, default:"user"},
     authorEmail:{type: String, required: false},
     postText: { type: String, required: true, default: "em branco" },
-    likes: {type: Number, default:0},
+    likes: {type: Array},
     created: { type: Date, default: Date.now }
 });
 

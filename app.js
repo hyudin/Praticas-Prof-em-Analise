@@ -159,13 +159,31 @@ app.get("/profile/:email/like/:id", function (req, res) {
     });
 });
 
+
+app.put("/profile/:email/friends/:friendsemail/follow", function (req, res) {
+    console.log(userid)
+    User.updateOne({ _id: userid }, { $addToSet: { friends: [req.params.friendsemail] } }, function (err, user) {
+        if (err) {
+            console.log(err)
+        } else {
+            console.log("oi")
+            res.redirect("/profile/" + useremail)
+
+            // User.friends.append(req.body.friendsemail)
+            // res.render("friends", { user: foundUsers });
+        }
+
+    });
+});
+
 app.put("/profile/:email/like/:id", function (req, res) {
     console.log("OI");
     console.log(req.body.post);
-    Post.findByIdAndUpdate(req.params.id, req.body.post, function (err) {
+    Post.updateOne({_id: req.params.id}, { $addToSet: { likes: [req.params.email] } } ,function (err,foundPost) {
         if (err) {
             console.log(err);
         } else {
+            console.log(foundPost);
             console.log("LIKE");
             res.redirect('back');
         }
@@ -206,6 +224,7 @@ app.put("/profile/:email/post/:id/edit", function (req, res) {
         } else {
             console.log("LIKE");
             res.redirect("/profile/" + useremail);
+            console.log(post)
         }
     });
 });
