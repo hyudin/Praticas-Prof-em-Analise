@@ -179,7 +179,7 @@ app.put("/profile/:email/friends/:friendsemail/follow", function (req, res) {
 app.put("/profile/:email/like/:id", function (req, res) {
     console.log("OI");
     console.log(req.body.post);
-    Post.updateOne({_id: req.params.id}, { $addToSet: { likes: [req.params.email] } } ,function (err,foundPost) {
+    Post.updateOne({_id: req.params.id}, { $addToSet: { likes: [useremail] } } ,function (err,foundPost) {
         if (err) {
             console.log(err);
         } else {
@@ -398,6 +398,33 @@ app.get("/profile/:email/friends", function (req, res) {
 //         }
 //     });
 // });
+
+app.get("/profile/:email/friends/:friendsemail", function (req, res) {
+    User.find({email: req.params.friendsemail}, function (err, foundUser) {
+        if (err) {
+            console.log(err)
+        } else {
+            console.log("oi")
+            console.log(foundUser) 
+            Post.find({'authorEmail': req.params.friendsemail }, function (err, posts) {
+                if (err) {
+                    console.log("Erro ao carregar posts!");
+                } else {
+                    // console.log("Usuário encontrado");
+                    // console.log(foundUser);
+                    res.render("friendsprofile", { posts: posts, user: foundUser });
+
+                }
+
+            });
+
+            }
+
+
+    });
+});
+
+
 
 
 app.get("/profile/:email/friends/:friendsemail/follow", function (req, res) {

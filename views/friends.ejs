@@ -8,10 +8,12 @@
         <% friends.forEach(function(user){ %>
         <div class="col-3 h-100 border-right">
             <div class="card shadow mb-5 mx-4">
-                <div class="card-body" style="height: 490px;">
-                    <img src="<%= user.image %>" class=" mx-auto d-block shadow rounded-circle profile-image mb-3"
+                <div class="card-body" style="height: 560px;">
+                    <img src="<%= user.image %>"  class="mx-auto d-block shadow rounded-circle profile-image mb-3"
                         style="width:200px;" alt="">
-                    
+                    <div >
+                    <a class="text-center" href="/profile/<%= useremail %>/friends/<%= user.email %>"><p class="text-center">Ir para o perfil</p></a>
+                    </div>
                     <h4 id="username" name="username" class="text-center py-2"><%= user.name %></h4>
                     <p id="email" name="email" class="text-center m-0"><%= user.email %></p>
                     <p id="idade" class="text-center m-0"><%= user.age %></p>
