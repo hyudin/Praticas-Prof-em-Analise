@@ -34,6 +34,7 @@ const user = require("./models/user");
 app.locals.useremail;
 app.locals.userid;
 app.locals.userFriends;
+app.locals.error = false;
 
 
 
@@ -77,7 +78,7 @@ app.get("/profile/:email", function (req, res) {
                     // console.log("Usuário encontrado");
                     // console.log(foundUser);
                     res.render("profile", { posts: posts, user: foundUser });
-                    
+
                 }
 
             });
@@ -85,16 +86,16 @@ app.get("/profile/:email", function (req, res) {
     })
 });
 
-app.get('/showMyId',function(req,response,next){
+app.get('/showMyId', function (req, response, next) {
     response.send(useremail);
-  });
+});
 
 //=================== NEW ROUTE ======================
 
 //CRIAR POST
 app.post("/profile/:email", function (req, res) {
 
-    Post.create(req.body.newpost,function (err, newPost) {
+    Post.create(req.body.newpost, function (err, newPost) {
         if (err) {
             console.log(err);
         } else {
@@ -159,10 +160,10 @@ app.get("/profile/:email/like/:id", function (req, res) {
 app.put("/profile/:email/like/:id", function (req, res) {
     console.log("OI");
     console.log(req.body.post);
-    Post.findByIdAndUpdate(req.params.id, req.body.post ,function(err){
-        if(err){
+    Post.findByIdAndUpdate(req.params.id, req.body.post, function (err) {
+        if (err) {
             console.log(err);
-        }   else{
+        } else {
             console.log("LIKE");
             res.redirect('back');
         }
@@ -172,7 +173,7 @@ app.put("/profile/:email/like/:id", function (req, res) {
 //EDITAR POST
 
 app.get("/profile/:email/post/:id/edit", function (req, res) {
-    User.find({email: useremail}, function (err, user) {
+    User.find({ email: useremail }, function (err, user) {
         console.log("============================================")
         console.log(req.params.id)
         if (err) {
@@ -181,7 +182,7 @@ app.get("/profile/:email/post/:id/edit", function (req, res) {
             // res.render("profile", {user:user});
             console.log(user);
 
-            Post.find({_id: req.params.id}, function (err, post) {
+            Post.find({ _id: req.params.id }, function (err, post) {
                 if (err) {
                     console.log(err);
                     console.log("Erro ao carregar posts!");
@@ -197,10 +198,10 @@ app.get("/profile/:email/post/:id/edit", function (req, res) {
 app.put("/profile/:email/post/:id/edit", function (req, res) {
     console.log("OI");
     console.log(req.body.post);
-    Post.findByIdAndUpdate(req.params.id, req.body.post ,function(err){
-        if(err){
+    Post.findByIdAndUpdate(req.params.id, req.body.post, function (err) {
+        if (err) {
             console.log(err);
-        }   else{
+        } else {
             console.log("LIKE");
             res.redirect("/profile/" + useremail);
         }
@@ -208,9 +209,74 @@ app.put("/profile/:email/post/:id/edit", function (req, res) {
 });
 
 
+//===============CADASTRAR========================
+
 app.get("/cadastro", function (req, res) {
-    res.render("cadastro");
+    res.render("cadastro", {wrongPassword : false, emailExists : false});
 });
+
+app.post("/cadastro", function (req, res) {
+    
+    var regUser = req.body.user
+    var password = regUser.password
+    var confirmPassword = regUser.confirmPassword
+
+    let errors = [];
+    if (password != confirmPassword) {
+        errors.push({ msg: 'Senha e senha confirmada estão diferentes' });
+    }
+
+
+    if (regUser.age < 18 || regUser.age > 100){
+        errors.push({ msg: 'Idade não aceita' });
+    }
+
+    console.log(errors)
+    if (errors.length > 0) {
+        res.render('cadastro', {
+            errors
+        });
+    } else{
+
+
+        User.create(req.body.user, function (err, newUser) {
+            if (err) {
+                console.log(err)
+                errors.push({ msg: 'Email já cadastrado' });
+                res.render('cadastro', {
+                    errors
+                });
+            } else {
+                console.log(newUser);
+                res.render("home");
+            }
+        })
+    }
+});
+
+//=============== LOGIN =======================
+app.get('/login',function(req, res) {
+    res.render('/profile'+ useremail);
+});
+
+
+app.post('/login', function(req, res)
+{
+    User.findOne({email: req.body.email, password: req.body.password}, function(err, user){
+        if(err) {
+            console.log(err);
+        }
+        else if(user){
+            useremail = req.body.email
+            res.redirect('/profile/'+ useremail);
+        }
+        else {
+            res.render('home', {error: true})
+        }
+    });
+
+});
+
 
 
 //================DELETE ROUTE====================
@@ -220,16 +286,16 @@ app.delete("/profile/:email", function (req, res) {
     console.log(req.body.post);
 
     var id = req.body.post.id;
-    console.log("iD:"+ id);
+    console.log("iD:" + id);
 
-    Post.findByIdAndDelete(id,function(err){
-        if(err){
+    Post.findByIdAndDelete(id, function (err) {
+        if (err) {
             console.log(err);
-        }   else{
+        } else {
             res.redirect(useremail);
         }
     });
-    
+
     // Post.findByIdAndRemove(req.body.post, function (err) {
     //     if (err) {
     //         console.log(err);
@@ -244,33 +310,33 @@ app.delete("/profile/:email", function (req, res) {
     //         // Post.findByIdAndRemove(req.params.post);
     //     } else {
     //         console.log("não encontrado");
-            
+
     //     }
     // })
 });
 
-var userfriends 
+var userfriends
 // 
 
 // AMIGOS
 app.get("/profile/:email/friends", function (req, res) {
-    User.find({email: useremail}, function (err, user) {
+    User.find({ email: useremail }, function (err, user) {
         if (err) {
             console.log("ERRO USUÁRIO NÃO ENCONTRADO!");
         } else {
             // var friends = user.find()
-           console.log(user)
+            console.log(user)
 
-            User.find({'email': userFriends }, function(err,friends){
-                if(err){
+            User.find({ 'email': userFriends }, function (err, friends) {
+                if (err) {
                     console.log(err);
-                } else{
-                    res.render("friends", {friends : friends, user:user});
+                } else {
+                    res.render("friends", { friends: friends, user: user });
                 }
 
             })
-            
-            
+
+
         }
 
     })
@@ -321,7 +387,7 @@ app.get("/profile/:email/friends/:friendsemail/follow", function (req, res) {
         } else {
             console.log("oi")
             console.log(foundUsers)
-            res.redirect("/profile/"+useremail)
+            res.redirect("/profile/" + useremail)
 
             // User.friends.append(req.body.friendsemail)
             // res.render("friends", { user: foundUsers });
@@ -332,12 +398,12 @@ app.get("/profile/:email/friends/:friendsemail/follow", function (req, res) {
 
 app.put("/profile/:email/friends/:friendsemail/follow", function (req, res) {
     console.log(userid)
-    User.updateOne({_id: userid}, {$addToSet:{ friends:[req.params.friendsemail]}}, function (err, user) {
+    User.updateOne({ _id: userid }, { $addToSet: { friends: [req.params.friendsemail] } }, function (err, user) {
         if (err) {
             console.log(err)
         } else {
             console.log("oi")
-            res.redirect("/profile/"+useremail)
+            res.redirect("/profile/" + useremail)
 
             // User.friends.append(req.body.friendsemail)
             // res.render("friends", { user: foundUsers });
@@ -355,7 +421,7 @@ app.get("/profile/:email/friends/:friendsemail/unfollow", function (req, res) {
         } else {
             console.log("oi")
             console.log(foundUsers)
-            res.redirect("/profile/"+useremail)
+            res.redirect("/profile/" + useremail)
             // User.friends.append(req.body.friendsemail)
             // res.render("friends", { user: foundUsers });
         }
@@ -366,12 +432,12 @@ app.get("/profile/:email/friends/:friendsemail/unfollow", function (req, res) {
 // Favorite.updateOne( {cn: req.params.name}, { $pullAll: {uid: [req.params.deleteUid] } } )
 app.put("/profile/:email/friends/:friendsemail/unfollow", function (req, res) {
     console.log(userid)
-    User.updateOne({_id: userid}, {$pullAll:{ friends:[req.params.friendsemail]}}, function (err, user) {
+    User.updateOne({ _id: userid }, { $pullAll: { friends: [req.params.friendsemail] } }, function (err, user) {
         if (err) {
             console.log(err)
         } else {
             console.log("oi")
-            res.redirect("/profile/"+useremail)
+            res.redirect("/profile/" + useremail)
 
             // User.friends.append(req.body.friendsemail)
             // res.render("friends", { user: foundUsers });
@@ -380,22 +446,22 @@ app.put("/profile/:email/friends/:friendsemail/unfollow", function (req, res) {
     });
 });
 
-app.get("/profile/:email/pesquisadores", function(req,res){
-    User.find({email: useremail}, function(err,user){
-        if(err){
+app.get("/profile/:email/pesquisadores", function (req, res) {
+    User.find({ email: useremail }, function (err, user) {
+        if (err) {
             console.log("USUÁRIO NÃO ENCONTRADO")
         } else {
-            User.find({}, function(err,users){
-                if (err){
+            User.find({}, function (err, users) {
+                if (err) {
                     console.log(err)
                 }
-                else{
-                    res.render("pesquisadores", {users: users, user:user})
+                else {
+                    res.render("pesquisadores", { users: users, user: user })
                 }
             });
         }
     })
-    
+
 });
 
 

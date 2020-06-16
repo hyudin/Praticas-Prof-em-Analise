@@ -1,58 +1,62 @@
 <%- include('partials/header-register') -%>
 
     <div class="container">
-        <form action="/" class="form-horizontal" role="form" method="POST">
+        <form action="/cadastro" class="form-horizontal" role="form" method="POST">
             <h2 class="display-4">Registro</h2>
+            <% if(typeof errors != 'undefined'){ %> 
+                <% errors.forEach(function(error) { %>
+                  <%= error.msg %>
+                <% }); %> 
+            <% } %>
             <div class="form-group pt-5">
                 <label for="Name" class="control-label">Nome</label>
-                <input type="text" id="Name" name="name" class="form-control" autofocus required>
+                <input type="text" id="user[name]" name="user[name]" class="form-control" autofocus required>
             </div>
             <div class="form-group">
                 <label for="email" class="control-label">Email</label>
-                <input type="email" id="email" name="email" class="form-control" autofocus required>
+                <input type="email" id="user[email]" name="user[email]" class="form-control" autofocus required>
             </div>
             <div class="form-group">
                 <label for="age" class="control-label">Idade</label>
-                <input type="number" id="age" name="age" class="form-control" autofocus required>
+                <input type="number" id="user[age]" name="user[age]" class="form-control" autofocus required>
             </div>
             <div class="form-group">
                 <label for="Course" class="control-label">Curso</label>
-                <input type="text" id="Course" name="course" class="form-control" autofocus required>
+                <input type="text" id="user[Course]" name="user[course]" class="form-control" autofocus required>
             </div><div class="form-group">
                 <label for="university" class="control-label">Universidade</label>
-                <input type="text" id="university" name="university" class="form-control" autofocus required>
+                <input type="text" id="user[university]" name="user[university]" class="form-control" autofocus required>
             </div>
             <div class="form-group">
                 <label for="password" class="control-label">Senha</label>
-                <input type="text" id="password" name="password" class="form-control" autofocus required>
+                <input type="password" id="user[password]" name="user[password]" class="form-control" autofocus required>
             </div>
             <div class="form-group">
                 <label for="confirmPassword" class="control-label">Confirmar Senha</label>
-                <input type="text" id="confirmPassword" name="confirmPassword" class="form-control" autofocus required>
+                <input type="password" id="user[confirmPassword]" name="user[confirmPassword]" class="form-control" autofocus required>
             </div>
             <div class="form-group">
                 <label for="estado">Estado</label>
-                <select class="custom-select" id="estado" required>
+                <select class="custom-select" id="user[state]" name="user[state]" required>
                     <option selected disabled value="">Escolha um estado...</option>
                     <option>...</option>
                 </select>
             </div>
             <div class="form-group">
                 <label for="cidade">Cidade</label>
-                <select class="custom-select" id="cidade" required>
+                <select class="custom-select" id="user[city]" name="user[city]" required>
                     <option selected disabled value="">Escolha uma cidade</option>
                     <option>...</option>
                 </select>
             </div>
             <script language="JavaScript" type="text/javascript" charset="utf-8">
                 new dgCidadesEstados({
-                    cidade: document.getElementById('cidade'),
-                    estado: document.getElementById('estado')
+                    cidade: document.getElementById('user[city]'),
+                    estado: document.getElementById('user[state]')
                 })
             </script>
             
-            
-            <button type="submit" class="btn btn-primary">Sign in</button>
+            <button type="submit" class="btn btn-primary">Registrar</button>
         </form>
     </div>
 

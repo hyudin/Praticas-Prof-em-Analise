@@ -3,7 +3,7 @@ var mongoose = require('mongoose');
 var userSchema = new mongoose.Schema({
     name: { type: String, required: true },
     image: {type: String, default: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Circle-icons-profile.svg/512px-Circle-icons-profile.svg.png"},
-    email: { type: String, required: true },
+    email: { type: String, required: true, unique: true },
     password: { type: String, required: true },
     age: { type: String, required: true },
     city: { type: String, required: true },

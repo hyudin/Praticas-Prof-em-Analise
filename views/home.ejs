@@ -7,16 +7,20 @@
             <div id="loginContainer" class="col-4 p-5 align-self-center border-right">
                 <h4>Olá Cientista de dados!</h4>
                 <p>Seja bem-vindo a uma rede social dedicada a você!</p>
+                <% if(error) {%>
+                    <p class="font-weight-bold" style="color:red">Usuário ou senha inválidos</p>
+                    <% } %>
                 <!-- Entrada Texto Email e Password -->
-                <form>
+                <form id="form_Login" action="/login" method="post" >
                     <div class="form-group">
+                        
                         <label for="exampleInputEmail1">Email</label>
-                        <input type="email" placeholder="Email" class="form-control shadow-lg" id="exampleInputEmail1"
+                        <input type="email" id="email" name="email" placeholder="Email" class="form-control shadow-lg" id="exampleInputEmail1"
                             aria-describedby="emailHelp">
                     </div>
                     <div class="form-group">
                         <label for="exampleInputPassword1">Senha</label>
-                        <input type="password" placeholder="Senha" class="form-control shadow-lg"
+                        <input type="password" id="password" name="password" placeholder="Senha" class="form-control shadow-lg"
                             id="exampleInputPassword1">
                     </div>
                     <div></div>
