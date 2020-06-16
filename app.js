@@ -48,8 +48,9 @@ app.get("/profile", function (req, res) {
         } else {
             // res.render("profile", {user:user});
             console.log(user);
+            console.log(user.email)
 
-            Post.find({}, function (err, posts) {
+            Post.find({'authorEmail': user.email }, function (err, posts) {
                 if (err) {
                     console.log("Erro ao carregar posts!");
                 } else {
@@ -71,7 +72,8 @@ app.get("/profile/:email", function (req, res) {
             console.log(err);
             console.log("Usuário não encontrado");
         } else {
-            Post.find({}, function (err, posts) {
+            console.log(foundUser.email)
+            Post.find({'authorEmail': req.params.email }, function (err, posts) {
                 if (err) {
                     console.log("Erro ao carregar posts!");
                 } else {
