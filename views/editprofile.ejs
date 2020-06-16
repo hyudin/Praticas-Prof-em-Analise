@@ -48,6 +48,27 @@
                         <input type="text" id="user[university]" name="user[university]" class="form-control" value="<%= user.university %>"
                             autofocus required>
                     </div>
+                    <div class="form-group">
+                        <label for="inic_ci_dados" class="control-label">Início em Ciência de Dados</label>
+                        <input type="date" id="user[inicDados]" name="user[inicDados]" class="form-control" value="<%= user.inicDados %>" autofocus required>
+                    </div>
+                    <div class="form-group">
+                        <label for="user[formacao]">Nível de Formação</label>
+                        <select class="custom-select" id="user[formacao]" name="user[formacao]" required>
+                            <option selected disabled value="">Escolha um nível de formação</option>
+                            <option value="Graduado em ">Graduação</option> 
+                            <option value="Pós Graduado em" >Pós-Graduação</option>
+                            <option value="Mestre em">Mestrado</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="inst_pesquisa" class="control-label">Instituição de Pesquisa</label>
+                        <input type="text" id="user[instPesquisa]" name="user[instPesquisa]" class="form-control" value="<%= user.instPesquisa %>" autofocus required>
+                    </div>
+                    <div class="form-group">
+                        <label for="curriculo_lates" class="control-label">Curriculum Lates</label>
+                        <input type="text" id="user[curriculum]" name="user[curriculum]" class="form-control"  value=<%= user.curriculum %> required>
+                    </div>
 
                     <button type="submit" class="btn btn-primary">Enviar</button>
                 </form>

@@ -1,102 +1,105 @@
 <%- include('partials/header-register') -%>
 
-    <div class="container">
-        <form action="/cadastro" class="form-horizontal" role="form" method="POST">
-            <h2 class="display-4">Registro</h2>
-            <% if(typeof errors != 'undefined'){ %> 
-                <% errors.forEach(function(error) { %>
-                  <%= error.msg %>
-                <% }); %> 
-            <% } %>
-            <div class="form-group pt-5">
-                <label for="Name" class="control-label">Nome</label>
-                <input type="text" id="user[name]" name="user[name]" class="form-control" autofocus required>
-            </div>
-            <div class="form-group">
-                <label for="email" class="control-label">Email</label>
-                <input type="email" id="user[email]" name="user[email]" class="form-control" autofocus required>
-            </div>
-            <div class="form-group">
-                <label for="age" class="control-label">Idade</label>
-                <input type="number" id="user[age]" name="user[age]" class="form-control" autofocus required>
-            </div>
-            <div class="form-group">
-                <label for="Course" class="control-label">Curso</label>
-                <input type="text" id="user[Course]" name="user[course]" class="form-control" autofocus required>
-            </div><div class="form-group">
-                <label for="university" class="control-label">Universidade</label>
-                <input type="text" id="user[university]" name="user[university]" class="form-control" autofocus required>
-            </div>
-            <div class="form-group">
-                <label for="inic_ci_dados" class="control-label">Início em Ciência de Dados</label>
-                <input type="text" id="inic_ci_dados" name="inic_ci_dados" class="form-control" required>
-            </div>
-            <div class="form-group">
-                <label for="inst_pesquisa" class="control-label">Instituição de Pesquisa</label>
-                <input type="text" id="inst_pesquisa" name="inst_pesquisa" class="form-control" required>
-            </div>
-            <div class="form-group">
-                <label for="nivel_formacao" class="control-label">Nível de Formação</label>
-                <input type="text" id="nivel_formacao" name="nivel_formacao" class="form-control" required>
-            </div>
-    
-            <div class="form-group">
-                <label for="local_formacao" class="control-label">Local de Formação</label>
-                <input type="text" id="local_formacao" name="local_formacao" class="form-control" required>
-            </div>
-            <div class="form-group">
-                <label for="curriculo_lates" class="control-label">Currículo Lates</label>
-                <input type="text" id="curriculo_lates" name="curriculo_lates" class="form-control" required>
-            </div>
-            <div class="form-group">
-                <label for="password" class="control-label">Senha</label>
-                <input type="password" id="user[password]" name="user[password]" class="form-control" autofocus required>
-            </div>
-            <div class="form-group">
-                <label for="confirmPassword" class="control-label">Confirmar Senha</label>
-                <input type="password" id="user[confirmPassword]" name="user[confirmPassword]" class="form-control" autofocus required>
-            </div>
-            <div class="form-group">
-                <label for="estado">Estado</label>
-                <select class="custom-select" id="user[state]" name="user[state]" required>
-                    <option selected disabled value="">Escolha um estado...</option>
-                    <option>...</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <label for="cidade">Cidade</label>
-                <select class="custom-select" id="user[city]" name="user[city]" required>
-                    <option selected disabled value="">Escolha uma cidade</option>
-                    <option>...</option>
-                </select>
-            </div>
-            <script language="JavaScript" type="text/javascript" charset="utf-8">
-                new dgCidadesEstados({
-                    cidade: document.getElementById('user[city]'),
-                    estado: document.getElementById('user[state]')
-                })
-            </script>
-            
-            <button type="submit" class="btn btn-primary">Registrar</button>
-        </form>
-    </div>
+<div class="container">
+    <form action="/cadastro" class="form-horizontal" role="form" method="POST">
+        <h2 class="display-4">Registro</h2>
+        <% if(typeof errors != 'undefined'){ %>
+        <% errors.forEach(function(error) { %>
+        <%= error.msg %>
+        <% }); %>
+        <% } %>
+        <div class="form-group pt-5">
+            <label for="Name" class="control-label">Nome</label>
+            <input type="text" id="user[name]" name="user[name]" class="form-control" autofocus required>
+        </div>
+        <div class="form-group">
+            <label for="email" class="control-label">Email</label>
+            <input type="email" id="user[email]" name="user[email]" class="form-control" autofocus required>
+        </div>
+        <div class="form-group">
+            <label for="age" class="control-label">Idade</label>
+            <input type="number" id="user[age]" name="user[age]" class="form-control" autofocus required>
+        </div>
+        <div class="form-group">
+            <label for="Course" class="control-label">Curso</label>
+            <input type="text" id="user[Course]" name="user[course]" class="form-control" autofocus required>
+        </div>
+        <div class="form-group">
+            <label for="user[formacao]">Nível de Formação</label>
+            <select class="custom-select" id="user[formacao]" name="user[formacao]" required>
+                <option selected disabled value="">Escolha um nível de formação</option>
+                <option value="Graduado em ">Graduação</option> 
+                <option value="Pós Graduado em" >Pós-Graduação</option>
+                <option value="Mestre em">Mestrado</option>
+            </select>
+        </div>
+        
+        <div class="form-group">
+            <label for="university" class="control-label">Universidade</label>
+            <input type="text" id="user[university]" name="user[university]" class="form-control" autofocus required>
+        </div>
+        <div class="form-group">
+            <label for="inic_ci_dados" class="control-label">Início em Ciência de Dados</label>
+            <input type="date" id="user[inicDados]" name="user[inicDados]" class="form-control" required>
+        </div>
+        <div class="form-group">
+            <label for="inst_pesquisa" class="control-label">Instituição de Pesquisa</label>
+            <input type="text" id="user[instPesquisa]" name="user[instPesquisa]" class="form-control" required>
+        </div>
+        <div class="form-group">
+            <label for="curriculo_lates" class="control-label">Curriculum Lates</label>
+            <input type="text" id="user[curriculum]" name="user[curriculum]" class="form-control" required>
+        </div>
+        <div class="form-group">
+            <label for="password" class="control-label">Senha</label>
+            <input type="password" id="user[password]" name="user[password]" class="form-control" autofocus required>
+        </div>
+        <div class="form-group">
+            <label for="confirmPassword" class="control-label">Confirmar Senha</label>
+            <input type="password" id="user[confirmPassword]" name="user[confirmPassword]" class="form-control"
+                autofocus required>
+        </div>
+        <div class="form-group">
+            <label for="estado">Estado</label>
+            <select class="custom-select" id="user[state]" name="user[state]" required>
+                <option selected disabled value="">Escolha um estado...</option>
+                <option>...</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="cidade">Cidade</label>
+            <select class="custom-select" id="user[city]" name="user[city]" required>
+                <option selected disabled value="">Escolha uma cidade</option>
+                <option>...</option>
+            </select>
+        </div>
+        <script language="JavaScript" type="text/javascript" charset="utf-8">
+            new dgCidadesEstados({
+                cidade: document.getElementById('user[city]'),
+                estado: document.getElementById('user[state]')
+            })
+        </script>
+
+        <button type="submit" class="btn btn-primary">Registrar</button>
+    </form>
+</div>
 
 
 
 
 
-    <!-- Fonts Awesome -->
-    <script src="https://kit.fontawesome.com/3741ec6fe2.js" crossorigin="anonymous"></script>
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
-        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
-        crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
-        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
-        crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
-        integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
-        crossorigin="anonymous"></script>
+<!-- Fonts Awesome -->
+<script src="https://kit.fontawesome.com/3741ec6fe2.js" crossorigin="anonymous"></script>
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+    integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+    crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+    integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+    crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+    integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+    crossorigin="anonymous"></script>
 </body>
 
 </html>

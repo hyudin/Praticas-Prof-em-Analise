@@ -3,6 +3,7 @@ var bodyParser = require("body-parser"),
     express = require("express"),
     app = express(),
     mongoose = require("mongoose"),
+    moment = require('moment'),
     seedDB = require("./seeds"),
     User = require("./models/user"),
     Post = require("./models/post");
@@ -35,6 +36,8 @@ app.locals.useremail;
 app.locals.userid;
 app.locals.userFriends;
 app.locals.error = false;
+app.locals.moment = moment;
+moment.locale('pt-BR');
 
 
 
@@ -127,6 +130,7 @@ app.get("/profile/:email/edit", function (req, res) {
 
 //================UPDATE ROUTE===================
 app.put("/profile/:email", function (req, res) {
+    console.log(req.body.user)
     User.findOneAndUpdate(useremail, req.body.user, function (err, foundUser) {
         if (err) {
             res.redirect("/profile");
