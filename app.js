@@ -114,7 +114,7 @@ app.post("/profile/:email", function (req, res) {
 
 //=================EDIT ROUTE===================
 app.get("/profile/:email/edit", function (req, res) {
-    User.find({ email: useremail }, function (err, foundUser) {
+    User.find({ email: req.params.email }, function (err, foundUser) {
         if (err) {
             console.log("ERRO USUÁRIO NÃO ENCONTRADO!");
         } else {
@@ -129,12 +129,14 @@ app.get("/profile/:email/edit", function (req, res) {
 
 
 //================UPDATE ROUTE===================
-app.put("/profile/:email", function (req, res) {
+app.put("/profile/:email/edit", function (req, res) {
     console.log(req.body.user)
-    User.findOneAndUpdate(useremail, req.body.user, function (err, foundUser) {
+    User.findOneAndUpdate({ email: req.params.email }, req.body.user, function (err, foundUser) {
         if (err) {
             res.redirect("/profile");
         } else {
+            console.log(foundUser)
+            console.log(useremail)
             res.redirect("/profile/" + useremail);
         }
 

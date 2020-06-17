@@ -6,7 +6,7 @@
             <div class="card py-5 row justify-content-center">
 
                 <% user.forEach(function(user){ %>
-                <form class="form-horizontal" style="margin:auto; width:60%" role="form" action="/profile/<%= useremail %>?_method=PUT" method="POST">
+                <form class="form-horizontal" style="margin:auto; width:60%" role="form" action="/profile/<%= useremail %>/edit?_method=PUT" method="POST">
                     <h2 class="display-4 text-center">Editar Perfil</h2>
                     <div class="form-group pt-5">
                         <label for="firstName" class="control-label">Nome</label>
