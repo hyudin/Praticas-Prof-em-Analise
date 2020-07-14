@@ -564,6 +564,26 @@ app.get("/profile/:email/like/:id", function (req, res) {
     });
 });
 
+app.get("/profileMember/:email/like/:id", function (req, res) {
+    Member.find({}, function (err, user) {
+        if (err) {
+            console.log("Erro ao carregar dados do usuário");
+        } else {
+            // res.render("profile", {user:user});
+            console.log(user);
+
+            Post.find({}, function (err, posts) {
+                if (err) {
+                    console.log("Erro ao carregar posts!");
+                } else {
+                    res.render("profile", { posts: posts, user: user });
+                }
+
+            });
+        }
+    });
+});
+
 
 app.put("/profile/:email/friends/:friendsemail/follow", function (req, res) {
     console.log(userid)
@@ -582,6 +602,20 @@ app.put("/profile/:email/friends/:friendsemail/follow", function (req, res) {
 });
 
 app.put("/profile/:email/like/:id", function (req, res) {
+    console.log("OI");
+    console.log(req.body.post);
+    Post.updateOne({_id: req.params.id}, { $addToSet: { likes: [useremail] } } ,function (err,foundPost) {
+        if (err) {
+            console.log(err);
+        } else {
+            console.log(foundPost);
+            console.log("LIKE");
+            res.redirect('back');
+        }
+    });
+});
+
+app.put("/profileMember/:email/like/:id", function (req, res) {
     console.log("OI");
     console.log(req.body.post);
     Post.updateOne({_id: req.params.id}, { $addToSet: { likes: [useremail] } } ,function (err,foundPost) {
