@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="pt-br">
+
+<head>
+
+	<title>Rede+Cientistas ::: Registro</title>
+	<link rel="icon" th:href="@{/image/favicon.ico}" />
+	<!-- Required meta tags -->
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="description" content="Rede Social para Cientistas" />
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+		integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+	<link rel="stylesheet" href="/css/profile.css" type="text/css">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
+
+
+</head>
+
+<body>
+
+	<nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
+		<a class="navbar-brand pr-3 border-right" href="#"><img id="imgNavbar" src="/css/img/logo.png">
+			Rede+Cientistas</a>
+		<div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+			<ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+				<li class="nav-item active">
+					<a class="nav-link" href="/profile/<%= useremail %>">Home <span
+							class="sr-only">(current)</span></a>
+				</li>
+				
+				<li class="nav-item">
+					<a class="nav-link" href="/profile/<%= useremail %>/edit">Editar Perfil <span
+							class="sr-only"></span></a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="/profile/<%= useremail %>/friends">Amigos<span
+							class="sr-only"></span></a>
+				</li>
+				<li class="nav-item ">
+					<a class="nav-link" href="/profile/<%= useremail %>/Pesquisadores">Sugestões<span
+							class="sr-only"></span></a>
+                </li>
+                <li class="nav-item active">
+					<a class="nav-link" href="/profile/<%= useremail %>/Publicacoes">Publicações<span
+							class="sr-only"></span></a>
+				</li>
+				
+			</ul>
+			<form class="form-inline my-2 my-lg-0">
+				<input class="form-control mr-sm-2" type="search" placeholder="Search">
+				<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+			</form>
+			<ul class="navbar-nav  mt-2 mt-lg-0">
+				<li class="nav-item">
+					<a class="nav-link" href="/">Logout<span
+						class="sr-only"></span></a>
+				</li>
+			</ul>
+		</div>
+
+    </nav>
+    
+    
+	<div class="container-fluid">
+		<div class="row justify-content-md-center">
+			<div class="col-md-8">
+				<h1 class="my-4 text-center">Publicações</h1>
+				
+				<% if(files) { %>
+				<% files.forEach(function(file) {%>
+				<div class="card mb-3">
+					<div class="card-header">
+						<div class="card-title">
+                                <h1><%= file.metadata.publTitle %></h1>
+						</div>
+					</div>
+					<div class="card-body">
+						<% if (file.isImage) { %>
+                        <img src="/image/<%= file.filename %>" width="150" alt="" class="img-responsive">
+						<hr>
+						<% } %>
+                        <%= file.metadata.publText %>
+					</div>
+					<div class="card-footer">
+						
+                        <% if (file.isImage) { %>
+							<button class="btn btn-dark "><a style="color: white" href="/image/<%= file.filename %>" download><i class="fas fa-arrow-circle-down pr-2"></i>            
+								<%= file.filename %></a></button>
+						<% }else  { %>
+							<button class="btn btn-dark "><a style="color: white" href="/image/<%= file.filename %>" download><i class="fas fa-arrow-circle-down pr-2"></i><%= file.filename %></a></button>
+						<% } %>
+
+						<p class="mt-2 mb-1">Autor: <%= file.metadata.authorName %></p>
+					</div>
+				</div>
+				<%}) %>
+				<% } else { %>
+				<p>No files to show</p>
+				<% } %>
+			</div>
+        </div>
+
+        
+        
+	</div>
+
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+	<script>
+		function readSingleFile(e) {
+			const name = e[0].name;
+			document.getElementById("file-label").textContent = name;
+		}
+	</script>
+</body>
+
+</html>
