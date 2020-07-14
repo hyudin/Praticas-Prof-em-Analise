@@ -204,6 +204,8 @@ const conn = mongoose.createConnection(mongoURI, {
     });
   });
 
+
+  
   
   app.get("/profile/:email/like/publ/:id", function (req, res) {
     console.log("OIIIIIII!!!!!!!!")
@@ -470,6 +472,18 @@ app.post("/profile/:email", function (req, res) {
     });
 });
 
+
+app.post("/profileMember/:email", function (req, res) {
+
+    Post.create(req.body.newpost, function (err, newPost) {
+        if (err) {
+            console.log(err);
+        } else {
+            res.redirect(useremail);
+            console.log(newPost);
+        }
+    });
+});
 
 
 //=================EDIT ROUTE===================
