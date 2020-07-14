@@ -862,7 +862,7 @@ app.delete("/profileMember/:email", function (req, res) {
         if (err) {
             console.log(err);
         } else {
-            res.redirect(useremail);
+            res.redirect('/profileMember/'+ useremail);
         }
     });
 
