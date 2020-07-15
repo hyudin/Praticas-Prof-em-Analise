@@ -918,43 +918,34 @@ app.get("/profileMember/:email/friends", function (req, res) {
     })
 });
 
-// app.get("/profile/:email/friends/:friendsemail/follow", function (req, res) {
-//     User.post({}, function (err, foundUsers) {
-//         if (err) {
-//             console.log(err)
-//         } else {
-//             res.send(req.body.friendsemail)
-//             // User.friends.append(req.body.friendsemail)
-//             // res.render("friends", { user: foundUsers });
-//         }
 
-//     })
-// });
-
-// app.get("/profile/:email/friends/:friendsemail/follow", function (req, res) {
-//     console.log("PROCURANDO")
-//     User.find({email:useremail}, function (err, user) {
-//         if (err) {
-//             console.log("Erro ao carregar dados do usuário");
-//         } else {
-//             // res.render("profile", {user:user});
-//             console.log(user);
-
-//             // User.find({email: req.params.friendsemail }, function (err, post) {
-//             //     if (err) {
-//             //         console.log(err);
-//             //         console.log("Erro ao carregar posts!");
-//             //     } else {
-//             //         console.log(req.params.friendsemail);
-//             //         res.render("postedit", { post: post, user: user });
-//             //     }
-
-//             // });
-//         }
-//     });
-// });
 
 app.get("/profile/:email/friends/:friendsemail", function (req, res) {
+    User.find({email: req.params.friendsemail}, function (err, foundUser) {
+        if (err) {
+            console.log(err)
+        } else {
+            console.log("oi")
+            console.log(foundUser) 
+            Post.find({'authorEmail': req.params.friendsemail }, function (err, posts) {
+                if (err) {
+                    console.log("Erro ao carregar posts!");
+                } else {
+                    // console.log("Usuário encontrado");
+                    // console.log(foundUser);
+                    res.render("friendsprofile", { posts: posts, user: foundUser });
+
+                }
+
+            });
+
+            }
+
+
+    });
+});
+
+app.get("/profileMember/:email/friends/:friendsemail", function (req, res) {
     User.find({email: req.params.friendsemail}, function (err, foundUser) {
         if (err) {
             console.log(err)
