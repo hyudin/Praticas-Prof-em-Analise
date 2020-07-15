@@ -1,3 +1,23 @@
+<!doctype html>
+<html lang="pt-br">
+
+<head>
+
+	<title>Rede+Cientistas ::: Perfil</title>
+	<link rel="icon" th:href="@{/image/favicon.ico}" />
+	<!-- Required meta tags -->
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="description" content="Rede Social para Cientistas" />
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+		integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+	<link rel="stylesheet" href="/css/profile.css" type="text/css">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
+	<script src="/js/cidades-estados.js"></script>
+
+</head>
 <%- include('partials/header-profile') -%>
 <div class="container-fluid">
 	<div class="row h-100">
@@ -12,6 +32,37 @@
 							<input type="text" id="newPubl[publTitle]" name="newPubl[publTitle]" class="form-control mb-2 pb-2"
 								placeholder="Título da Publicação" autofocus required>
 							</div>
+							<div class="form-group">
+								<label for="estado">Estado</label>
+								<select class="custom-select" id="publ[state]" name="publ[state]" required>
+									<option>...</option>
+								</select>
+							</div>
+							<div class="form-group">
+								<label for="cidade">Cidade</label>
+								<select class="custom-select" id="publ[city]" name="publ[city]" required>
+									<option>...</option>
+								</select>
+							</div>
+							<script language="JavaScript" type="text/javascript" charset="utf-8">
+								new dgCidadesEstados({
+									cidade: document.getElementById('publ[city]'),
+									estado: document.getElementById('publ[state]')
+								})
+							</script>
+						<div class="form-group">
+							<label for="data" class="control-label"></label>
+							<input type="date" id="newPubl[publData]" name="newPubl[publData]" placeholder="Data" class="form-control" autofocus required>
+						</div>
+						<div class="input-group-append">
+							<input type="text" id="newPubl[publUrl]" name="newPubl[publUrl]" class="form-control mb-2 pb-2"
+								placeholder="URL" autofocus required>
+							</div>
+						<div class="custom-file mb-3 mt-3">
+							<input type="file" class="custom-file-input" name="newPubl[file]" id="newPubl[file]"
+								onchange="readSingleFile(this.files)">
+							<label class="custom-file-label" for="newPubl[file]" id="file-label">Escolha um arquivo</label>
+						</div>
 						<div class="input-group postBox">
 							<input type="text" id="newPubl[authorName]" name="newPubl[authorName]" class="form-control"
 								style="display:none" value="<%= user.name %>" autofocus required>
@@ -23,11 +74,6 @@
 								<button type="submit" class="input-group-text"><i
 										class="fas fa-paper-plane px-3"></i></button>
 							</div>
-						</div>
-						<div class="custom-file mb-3 mt-3">
-							<input type="file" class="custom-file-input" name="newPubl[file]" id="newPubl[file]"
-								onchange="readSingleFile(this.files)">
-							<label class="custom-file-label" for="newPubl[file]" id="file-label">Escolha um arquivo</label>
 						</div>
 			</form>
 		</div>
