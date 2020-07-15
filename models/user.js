@@ -17,7 +17,8 @@ var userSchema = new mongoose.Schema({
     created: { type: Date, default: Date.now },
     // profile_pic:{type:String, default:"default_profile.png"},
     // member_id: {type: String, default: shortid.generate},
-    friends: {type: Array}
+    friends: {type: Array},
+    tags: {type: Array}
 });
 
 module.exports = mongoose.model("User", userSchema);

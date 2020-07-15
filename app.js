@@ -205,7 +205,32 @@ const conn = mongoose.createConnection(mongoURI, {
   });
 
 
+
   
+  app.get("/profile/:email/search/", function (req, res) {
+
+    var searchParams = req.query.query.toUpperCase().split(' ');
+    console.log(searchParams)
+    User.find({ tags: { $all: searchParams } }, function (e, users) {
+        console.log("ACHOU")
+        res.render('results', { results: true, search: req.query.query, users:users });
+    });
+});
+
+app.get("/profileMember/:email/search/", function (req, res) {
+
+    var searchParams = req.query.query.toUpperCase().split(' ');
+    console.log(searchParams)
+    User.find({ tags: { $all: searchParams } }, function (e, users) {
+        console.log(users)
+        console.log("ACHOU")
+        res.render('resultsMember', { results: true, search: req.query.query, users:users });
+    });
+});
+
+  
+
+
   
   app.get("/profile/:email/like/publ/:id", function (req, res) {
     console.log("OIIIIIII!!!!!!!!")
@@ -244,7 +269,7 @@ const conn = mongoose.createConnection(mongoURI, {
 });
 app.get("/profileMember/:email/like/publ/:id", function (req, res) {
     console.log("OIIIIIII!!!!!!!!")
-    Member.find({}, function (err, user) {
+    User.find({}, function (err, user) {
         if (err) {
             console.log("Erro ao carregar dados do usuário");
         } else {
@@ -515,6 +540,7 @@ app.get("/profileMember/:email/edit", function (req, res) {
 
 //================UPDATE ROUTE===================
 app.put("/profile/:email/edit", function (req, res) {
+    
     console.log(req.body.user)
     User.findOneAndUpdate({ email: req.params.email }, req.body.user, function (err, foundUser) {
         if (err) {
@@ -522,7 +548,15 @@ app.put("/profile/:email/edit", function (req, res) {
         } else {
             console.log(foundUser)
             console.log(useremail)
-            res.redirect("/profile/" + useremail);
+            User.findOneAndUpdate({ email: req.params.email}, {tags: (req.body.user.name + (' ') + req.body.user.city + (' ') + req.body.user.state + (' ') + 
+            req.body.user.university + (' ') + req.body.user.course + (' ') + req.body.user.instPesquisa).toUpperCase().split(' ') }, function(err, foundUser){
+                if (err){
+                    console.log(err)
+                } else {
+                    res.redirect("/profile/" + useremail);
+                }
+            })
+            
         }
 
     });
@@ -711,10 +745,12 @@ app.put("/profileMember/:email/post/:id/edit", function (req, res) {
 app.get("/cadastro", function (req, res) {
     res.render("cadastro", {wrongPassword : false, emailExists : false});
 });
+app.locals.regUser;
 
 app.post("/cadastro", function (req, res) {
     
     var regUser = req.body.user
+    app.locals.regUser = req.body.user
     var password = regUser.password
     var confirmPassword = regUser.confirmPassword
 
@@ -728,15 +764,33 @@ app.post("/cadastro", function (req, res) {
         errors.push({ msg: 'Idade não aceita' });
     }
 
+
+
+
     console.log(errors)
     if (errors.length > 0) {
         res.render('cadastro', {
             errors
         });
     } else{
+        var regUserTags = new User({
+            name : req.body.user.name,
+            email: req.body.user.email,
+            password: req.body.user.password,
+            age: req.body.user.age,
+            city: req.body.user.city,
+            state: req.body.user.state,
+            course: req.body.user.course,
+            university: req.body.user.university,
+            inicDados: req.body.user.inicDados,
+            instPesquisa: req.body.user.instPesquisa,
+            formacao: req.body.user.formacao,
+            curriculum: req.body.user.curriculum,
+            tags: (req.body.user.name + (' ') + req.body.user.city + (' ') + req.body.user.state + (' ') + 
+            req.body.user.university + (' ') + req.body.user.course + (' ') + req.body.user.instPesquisa).toUpperCase().split(' ')
+        }); 
 
-
-        User.create(req.body.user, function (err, newUser) {
+        User.create(regUserTags,function (err, newUser) {
             if (err) {
                 console.log(err)
                 errors.push({ msg: 'Email já cadastrado' });
@@ -744,12 +798,45 @@ app.post("/cadastro", function (req, res) {
                     errors
                 });
             } else {
-                console.log(newUser);
+                
                 res.render("home");
+                
+                
             }
         })
+        // User.updateOne({name: req.body.user}, { $addToSet: { tags: [req.body.user.name.split(' ')] } } ,function (err,foundPubl) {
+        //     if (err) {
+        //         console.log(err);
+        //     } else {
+        //         console.log(newUser);
+        //         res.render("home");
+        //     }
+        // });
     }
 });
+
+app.get("/addTags/:email", function (req,res){
+    res.render("home")
+});
+
+app.put("/addTags/:email", function (req, res) {
+    var names = regUser.name;
+    console.log("NAMES")
+    console.log(names)
+    var tag = names.toUpperCase().split(' ');
+    console.log("TAGS")
+    console.log(tag)
+
+    User.findByIdAndUpdate({ email: req.params.email }, { $addToSet: { tags: [tag] } }, function (err) {
+        if (err) {
+            console.log(err);
+        } else {
+            res.render("home")
+        }
+    });
+});
+
+
 
 app.get("/cadastroMember", function (req, res) {
     res.render("cadastroMember", {wrongPassword : false, emailExists : false});
