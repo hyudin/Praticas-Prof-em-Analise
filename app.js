@@ -958,7 +958,7 @@ app.get("/profileMember/:email/friends/:friendsemail", function (req, res) {
                 } else {
                     // console.log("Usuário encontrado");
                     // console.log(foundUser);
-                    res.render("friendsprofile", { posts: posts, user: foundUser });
+                    res.render("friendsprofileMember", { posts: posts, user: foundUser });
 
                 }
 
