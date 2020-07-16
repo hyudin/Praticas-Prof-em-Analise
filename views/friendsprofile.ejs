@@ -197,7 +197,9 @@
 					<p id="inic-dados" class="text-center m-0">Começou a estudar Ciência de dados em <%= datac %> em
 						<%= user.instPesquisa %></p>
 					<% }; %>
-					<a href="<%= user.curriculum %>"><label id="Curriculum Lates" class="text-center m-0"></label></a>
+					<h3 id="interessesTitle" class="text-center pt-2">Interesses</h3>
+					<label id="interesses" class="text-center pt-2 " ><%= user.personalInterest %></label>
+					<a href="<%= user.curriculum %>" class="text-center"><label id="Curriculum Lates" class="text-center m-0"></label>Visitar Curriculo</a>
 					<div style="display: none;"><%= userid = user._id %>
 						<% userFriends = user.friends %></div>
 				</div>

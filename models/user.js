@@ -18,6 +18,7 @@ var userSchema = new mongoose.Schema({
     // profile_pic:{type:String, default:"default_profile.png"},
     // member_id: {type: String, default: shortid.generate},
     friends: {type: Array},
+    personalInterest: {type: Array},
     tags: {type: Array}
 });
 

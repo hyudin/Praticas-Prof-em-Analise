@@ -1,0 +1,932 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+
+    <title>Rede+Cientistas ::: Cadastro</title>
+    <link rel="icon" th:href="@{/image/favicon.ico}" />
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="description" content="Rede Social para Cientistas" />
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+          integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/home.css" type="text/css">
+
+</head>
+
+<body>
+
+<br><br>
+<div class="container">
+    <form action="/profileMember/<%= email %>/personalInterestMember/edit?_method=PUT" method="POST" class="form-horizontal" role="form" >
+        <h2 class="display-4">Interesses pessoais</h2>
+
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input js-select-all" name="personalInterest" id="all-selected">
+                            <label class="custom-control-label" for="all-selected">All selected</label>
+                        </div>
+                    </th>
+                    <th>
+                        <div class="custom-control" style="margin-left: -8.2%;">
+                            <button class="js-clear">Clear <span></span> checked</button>
+                        </div>
+                    </th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" name="personalInterest" id="alg" value="algorithm">
+                            <label class="custom-control-label" for="alg">algorithm</label>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" name="personalInterest" id="ang" value="AngularJS">
+                            <label class="custom-control-label" for="ang">AngularJS</label>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" name="personalInterest" id="art-int" value="artificial intelligence">
+                            <label class="custom-control-label" for="art-int">artificial intelligence</label>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" name="personalInterest" id="backpro" value="backpropagation">
+                            <label class="custom-control-label" for="backpro">backpropagation</label>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" name="personalInterest" id="bay-the" value="Bayes' Theorem">
+                            <label class="custom-control-label" for="bay-the">Bayes' Theorem</label>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" name="personalInterest" id="bay-net" value="Bayesian network">
+                            <label class="custom-control-label" for="bay-net">Bayesian network</label>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" name="personalInterest" id="bias" value="bias">
+                            <label class="custom-control-label" for="bias">bias</label>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" name="personalInterest" id="bigdata" value="Big Data">
+                            <label class="custom-control-label" for="bigdata">Big Data</label>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" name="personalInterest" id="bin-dis" value="binomial distribution">
+                            <label class="custom-control-label" for="bin-dis">binomial distribution</label>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" name="personalInterest" id="chi-square-test" value="chi-square test">
+                            <label class="custom-control-label" for="chi-square-test">chi-square test</label>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" name="personalInterest" id="classification" value="classification">
+                            <label class="custom-control-label" for="classification">classification</label>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" name="personalInterest" id="clustering" value="clustering">
+                            <label class="custom-control-label" for="clustering">clustering</label>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" name="personalInterest" id="coefficient" value="coefficient">
+                            <label class="custom-control-label" for="coefficient">coefficient</label>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" name="personalInterest" id="comp-ling" value="computational linguistics">
+                            <label class="custom-control-label" for="comp-ling">computational linguistics</label>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" name="personalInterest" id="conf-inter" value="confidence interval">
+                            <label class="custom-control-label" for="conf-inter">confidence interval</label>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" name="personalInterest" id="cont-var" value="continuous variable">
+                            <label class="custom-control-label" for="cont-var">continuous variable</label>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" name="personalInterest" id="correl" value="correlation">
+                            <label class="custom-control-label" for="correl">correlation</label>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" name="personalInterest" id="cova" value="covariance">
+                            <label class="custom-control-label" for="cova">covariance</label>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" name="personalInterest" id="cross-vali" value="cross-validation">
+                            <label class="custom-control-label" for="cross-vali">cross-validation</label>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" name="personalInterest" id="d3" value="D3">
+                            <label class="custom-control-label" for="d3">D3</label>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" name="personalInterest" id="data-eng" value="data engineer">
+                            <label class="custom-control-label" for="data-eng">data engineer</label>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" name="personalInterest" id="data-min" value="data mining">
+                            <label class="custom-control-label" for="data-min">data mining</label>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" name="personalInterest" id="data-sci" value="data science">
+                            <label class="custom-control-label" for="data-sci">data science</label>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" name="personalInterest" id="data-struc" value="data structure">
+                            <label class="custom-control-label" for="data-struc">data structure</label>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" name="personalInterest" id="data-wra" value="data wrangling">
+                            <label class="custom-control-label" for="data-wra">data wrangling</label>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" name="personalInterest" id="dec-trees" value="decision trees">
+                            <label class="custom-control-label" for="dec-trees">decision trees</label>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" name="personalInterest" id="deep-lear" value="deep learning">
+                            <label class="custom-control-label" for="deep-lear">deep learning</label>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" name="personalInterest" id="dep-var" value="dependent variable">
+                            <label class="custom-control-label" for="dep-var">dependent variable</label>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" name="personalInterest" id="dim-red" value="dimension reduction">
+                            <label class="custom-control-label" for="dim-red">dimension reduction</label>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" name="personalInterest" id="disc-var" value="discrete variable">
+                            <label class="custom-control-label" for="disc-var">discrete variable</label>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" name="personalInterest" id="econ" value="econometrics">
+                            <label class="custom-control-label" for="econ">econometrics</label>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" name="personalInterest" id="feat" value="feature">
+                            <label class="custom-control-label" for="feat">feature</label>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" name="personalInterest" id="feat-eng" value="feature engineering">
+                            <label class="custom-control-label" for="feat-eng">feature engineering</label>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" name="personalInterest" id="gate" value="GATE">
+                            <label class="custom-control-label" for="gate">GATE</label>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" name="personalInterest" id="gra-boos" value="gradient boosting">
+                            <label class="custom-control-label" for="gra-boos">gradient boosting</label>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" name="personalInterest" id="grad-desc" value="gradient descent">
+                            <label class="custom-control-label" for="grad-desc">gradient descent</label>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" name="personalInterest" id="hist" value="histogram">
+                            <label class="custom-control-label" for="hist">histogram</label>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" name="personalInterest" id="ind-var" value="independent variable">
+                            <label class="custom-control-label" for="ind-var">independent variable</label>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" name="personalInterest" id="js" value="JavaScript">
+                            <label class="custom-control-label" for="js">JavaScript</label>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" name="personalInterest" id="k-means" value="k-means clustering">
+                            <label class="custom-control-label" for="k-means">k-means clustering</label>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" name="personalInterest" id="k-nea-nei" value="k-nearest neighbors">
+                            <label class="custom-control-label" for="k-nea-nei">k-nearest neighbors</label>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" name="personalInterest" id="lat-var" value="latent variable">
+                            <label class="custom-control-label" for="lat-var">latent variable</label>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" name="personalInterest" id="art-int" value="lift">
+                            <label class="custom-control-label" for="art-int">lift</label>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" name="personalInterest" id="linear-alg" value="linear algebra">
+                            <label class="custom-control-label" for="linear-alg">linear algebra</label>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" name="personalInterest" id="lin-reg" value="linear regression">
+                            <label class="custom-control-label" for="lin-reg">linear regression</label>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" name="personalInterest" id="log" value="logarithm">
+                            <label class="custom-control-label" for="log">logarithm</label>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" name="personalInterest" id="log-reg" value="logistic regression">
+                            <label class="custom-control-label" for="log-reg">logistic regression</label>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" name="personalInterest" id="mach-lear" value="machine learning">
+                            <label class="custom-control-label" for="mach-lear">machine learning</label>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" name="personalInterest" id="mach-lear-model" value="machine learning model">
+                            <label class="custom-control-label" for="mach-lear-model">machine learning model</label>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" name="personalInterest" id="mar-chain" value="Markov Chain">
+                            <label class="custom-control-label" for="mar-chain">Markov Chain</label>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" name="personalInterest" id="matlab" value="MATLAB">
+                            <label class="custom-control-label" for="matlab">MATLAB</label>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" name="personalInterest" id="matrix" value="matrix">
+                            <label class="custom-control-label" for="matrix">matrix</label>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" name="personalInterest" id="mean" value="mean">
+                            <label class="custom-control-label" for="mean">mean</label>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" name="personalInterest" id="mean-abs-err" value="Mean Absolute Error">
+                            <label class="custom-control-label" for="mean-abs-err">Mean Absolute Error</label>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" name="personalInterest" id="mean-squared-err" value="Mean Squared Error">
+                            <label class="custom-control-label" for="mean-squared-err">Mean Squared Error</label>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" name="personalInterest" id="median" value="median">
+                            <label class="custom-control-label" for="median">median</label>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" name="personalInterest" id="mode" value="mode">
+                            <label class="custom-control-label" for="mode">mode</label>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" name="personalInterest" id="model" value="model">
+                            <label class="custom-control-label" for="model">model</label>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" name="personalInterest" id="mont-carlo-met" value="Monte Carlo method">
+                            <label class="custom-control-label" for="mont-carlo-met">Monte Carlo method</label>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" name="personalInterest" id="mov-avg" value="moving average">
+                            <label class="custom-control-label" for="mov-avg">moving average</label>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" name="personalInterest" id="n-gram" value="n-gram">
+                            <label class="custom-control-label" for="n-gram">n-gram</label>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" name="personalInterest" id="naive-bay-class" value="naive Bayes classifier">
+                            <label class="custom-control-label" for="naive-bay-class">naive Bayes classifier</label>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" name="personalInterest" id="neural-net" value="neural network" >
+                            <label class="custom-control-label" for="neural-net">neural network</label>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" name="personalInterest" id="nor-distri" value="normal distribution">
+                            <label class="custom-control-label" for="nor-distri">normal distribution</label>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" name="personalInterest" id="nosql" value="NoSQL">
+                            <label class="custom-control-label" for="nosql">NoSQL</label>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" name="personalInterest" id="null-hyp" value="null hypothesis">
+                            <label class="custom-control-label" for="null-hyp">null hypothesis</label>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" name="personalInterest" id="obj-func" value="objective function" >
+                            <label class="custom-control-label" for="obj-func">objective function</label>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" name="personalInterest" id="outlier" value="outlier">
+                            <label class="custom-control-label" for="outlier">outlier</label>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" name="personalInterest" id="overfitting" value="overfitting">
+                            <label class="custom-control-label" for="overfitting">overfitting</label>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" name="personalInterest" id="p-value" value="P value">
+                            <label class="custom-control-label" for="p-value">P value</label>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" name="personalInterest" id="page-rank" value="PageRank" >
+                            <label class="custom-control-label" for="page-rank">PageRank</label>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" name="personalInterest" id="pandas" value="Pandas">
+                            <label class="custom-control-label" for="pandas">Pandas</label>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" name="personalInterest" id="perceptron" value="perceptron">
+                            <label class="custom-control-label" for="perceptron">perceptron</label>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" name="personalInterest" id="perl" value="Perl">
+                            <label class="custom-control-label" for="perl">Perl</label>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" name="personalInterest" id="pivot-table" value="pivot table">
+                            <label class="custom-control-label" for="pivot-table">pivot table</label>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" name="personalInterest" id="pois-distri" value="Poisson distribution">
+                            <label class="custom-control-label" for="pois-distri">Poisson distribution</label>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" name="personalInterest" id="post-distri" value="posterior distribution">
+                            <label class="custom-control-label" for="post-distri">posterior distribution</label>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" name="personalInterest" id="pred-analy" value="predictive analytics">
+                            <label class="custom-control-label" for="pred-analy">predictive analytics</label>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" name="personalInterest" id="pred-model" value="predictive modeling">
+                            <label class="custom-control-label" for="pred-model">predictive modeling</label>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" name="personalInterest" id="princ-comp-analy" value="principal component analysis">
+                            <label class="custom-control-label" for="princ-comp-analy">principal component analysis</label>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" name="personalInterest" id="prior-distri" value="prior distribution">
+                            <label class="custom-control-label" for="prior-distri">prior distribution</label>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" name="personalInterest" id="prob-distri" value="probability distribution">
+                            <label class="custom-control-label" for="prob-distri">probability distribution</label>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" name="personalInterest" id="python" value="Python">
+                            <label class="custom-control-label" for="python">Python</label>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" name="personalInterest" id="quant-quart" value="quantile, quartile">
+                            <label class="custom-control-label" for="quant-quart">quantile, quartile</label>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" name="personalInterest" id="r" value="R">
+                            <label class="custom-control-label" for="r">R</label>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" name="personalInterest" id="rand-forest" value="random forest" >
+                            <label class="custom-control-label" for="rand-forest">random forest</label>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" name="personalInterest" id="regression" value="regression">
+                            <label class="custom-control-label" for="regression">regression</label>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" name="personalInterest" id="reinf-learning" value="reinforcement learning">
+                            <label class="custom-control-label" for="reinf-learning">reinforcement learning</label>
+                        </div>
+                    </td>
+                </tr>
+
+
+                <tr>
+                    <td>
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" name="personalInterest" id="root-mean" value="Root Mean Squared Error">
+                            <label class="custom-control-label" for="root-mean"> Root Mean Squared Error </label>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" name="personalInterest" id="ruby" value="Ruby">
+                            <label class="custom-control-label" for="ruby">Ruby</label>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" name="personalInterest" id="s-curve" value="S curve">
+                            <label class="custom-control-label" for="s-curve"> S Curve</label>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" name="personalInterest" id="SAS" value="SAS">
+                            <label class="custom-control-label" for="SAS">SAS</label>
+                        </div>
+                    </td>
+                </tr>
+
+
+                <tr>
+                    <td>
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" name="personalInterest" id="scalar" value="scalar">
+                            <label class="custom-control-label" for="scalar">Scalar</label>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" name="personalInterest" id="scripting" value="scripting">
+                            <label class="custom-control-label" for="scripting">Scripting</label>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" name="personalInterest" id="serial-correlation" value="serial correlation">
+                            <label class="custom-control-label" for="serial-correlation">Serial Correlation</label>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" name="personalInterest" id="shell" value="shell">
+                            <label class="custom-control-label" for="shell">Shell</label>
+                        </div>
+                    </td>
+                </tr>
+
+
+
+                <tr>
+                    <td>
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" name="personalInterest" id="spatio-data" value="spatiotemporal data">
+                            <label class="custom-control-label" for="spatio-data">Spatiotemporal Data</label>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" name="personalInterest" id="spss" value="SPSS">
+                            <label class="custom-control-label" for="spss">SPSS</label>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" name="personalInterest" id="sql" value="SQL">
+                            <label class="custom-control-label" for="sql">SQL</label>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" name="personalInterest" id="standard-dev" value="standard deviation">
+                            <label class="custom-control-label" for="standard-dev">Standard Deviation</label>
+                        </div>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" name="personalInterest" id="standard-norm" value="standard normal distribution">
+                            <label class="custom-control-label" for="standard-norm">Standard Normal Distribution</label>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" name="personalInterest" id="standard-score" value="standardized score">
+                            <label class="custom-control-label" for="standard-score">Standardized Score</label>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" name="personalInterest" id="stata" value="Stata">
+                            <label class="custom-control-label" for="stata">Stata</label>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" name="personalInterest" id="strata-samp" value="strata, stratified sampling">
+                            <label class="custom-control-label" for="strata-samp">Strata, Stratified Sampling </label>
+                        </div>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" name="personalInterest" id="superv-learning" value="supervised learning">
+                            <label class="custom-control-label" for="superv-learning">Supervised Learning</label>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" name="personalInterest" id="support-vector" value="support vector machine">
+                            <label class="custom-control-label" for="support-vector">Support Vector Machine</label>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" name="personalInterest" id="t-distribution" value="t-distribution">
+                            <label class="custom-control-label" for="t-distribution">T-Distribution</label>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" name="personalInterest" id="tableau" value="Tableau">
+                            <label class="custom-control-label" for="tableau">Tableau </label>
+                        </div>
+                    </td>
+                </tr>
+
+
+                <tr>
+                    <td>
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" name="personalInterest" id="time-series" value="time series data">
+                            <label class="custom-control-label" for="time-series">Time Series Data</label>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" name="personalInterest" id="uima" value="UIMA">
+                            <label class="custom-control-label" for="uima">UIMA</label>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" name="personalInterest" id="unsuper-learning" value="unsupervised learning">
+                            <label class="custom-control-label" for="unsuper-learning">Unsupervised Learning</label>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" name="personalInterest" id="variance" value="variance">
+                            <label class="custom-control-label" for="variance"> Variance </label>
+                        </div>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" name="personalInterest" id="vector" value="vector">
+                            <label class="custom-control-label" for="vector">Vector</label>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" name="personalInterest" id="vector-space" value="vector space">
+                            <label class="custom-control-label" for="vector-space"> Vector Space</label>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" name="personalInterest" id="weka" value="Weka">
+                            <label class="custom-control-label" for="weka">Weka </label>
+                        </div>
+                    </td>
+                </tr>
+
+                </tbody>
+            </table>
+
+        <button type="submit" class="btn btn-primary" onclick="myFunction()">Salvar</button>
+    </form>
+</div>
+
+
+
+
+
+<!-- Fonts Awesome -->
+<script src="https://kit.fontawesome.com/3741ec6fe2.js" crossorigin="anonymous"></script>
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+        integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
+<script>
+const DynamicCheckboxes = {
+checkboxes: document.querySelectorAll('.table td input[type="checkbox"]'),
+selectAllTarget: document.querySelector('.js-select-all'),
+clearBtn: document.querySelector('.js-clear'),
+
+initialize() {
+this.shiftToSelect();
+this.selectAll();
+this.clearChecked();
+this.showRemoveCheckedButton();
+},
+
+shiftToSelect() {
+const checkboxes = this.checkboxes;
+let lastChecked;
+
+function handleCheck(event) {
+// Check if shift key is down and check if checkbox is checked
+let inBetween = false;
+if (event.shiftKey && this.checked) {
+checkboxes.forEach(checkbox => {
+if (checkbox === this || checkbox === lastChecked) {
+inBetween = !inBetween;
+}
+
+if (inBetween) {
+checkbox.checked = true;
+}
+});
+}
+lastChecked = this;
+}
+
+
+checkboxes.forEach(checkbox => checkbox.addEventListener('click', handleCheck, false));
+},
+
+selectAll() {
+function handleSelectAll(event) {
+this.checkboxes.forEach(checkbox => {
+checkbox.checked ? (checkbox.checked = false) : (checkbox.checked = true)
+})
+}
+
+this.selectAllTarget.addEventListener('click', handleSelectAll.bind(this), false)
+},
+
+showRemoveCheckedButton() {
+this.clearBtnDisplay('none')
+document.addEventListener('change', this.showBtn.bind(this))
+},
+
+showBtn(event) {
+const checkboxesChecked = document.querySelectorAll('.table td input[type=checkbox]:checked').length
+
+if (checkboxesChecked > 0) {
+this.clearBtn.querySelector('span').textContent = checkboxesChecked;
+this.clearBtnDisplay('block');
+} else {
+this.clearBtn.querySelector('span').textContent = '';
+this.clearBtnDisplay('none');
+}
+},
+
+clearBtnDisplay(state) {
+this.clearBtn.style.display = state;
+},
+
+clearChecked() {
+this.clearBtn.addEventListener('click', removeChecked.bind(this), false);
+
+function removeChecked() {
+this.checkboxes.forEach(checkbox => (checkbox.checked = false));
+this.selectAllTarget.checked = false;
+this.clearBtnDisplay('none');
+}
+}
+
+};
+
+DynamicCheckboxes.initialize();
+
+function myFunction() {
+//var x = document.getElementById("myCheck1").value;
+//var y = document.getElementById("myCheck1").checked;
+
+    var checkboxes = document.getElementsByName("personalInterest");
+    console.log(checkboxes);
+    var checkboxesChecked = [];
+
+    for (var i=0; i<checkboxes.length; i++) {
+
+        if (checkboxes[i].checked) {
+            checkboxesChecked.push(checkboxes[i].value);
+        }
+    }
+
+    console.log(checkboxesChecked);
+    //document.getElementById("demo").innerHTML = x;
+}
+</script>

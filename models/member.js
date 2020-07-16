@@ -12,7 +12,8 @@ var memberSchema = new mongoose.Schema({
     member: { type: String, default: 1},
     // profile_pic:{type:String, default:"default_profile.png"},
     // member_id: {type: String, default: shortid.generate},
-    friends: {type: Array}
+    friends: {type: Array},
+    personalInterest: {type: Array}
 });
 
 module.exports = mongoose.model("Member", memberSchema);

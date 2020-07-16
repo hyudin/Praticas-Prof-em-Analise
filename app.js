@@ -793,7 +793,7 @@ app.post("/cadastro", function (req, res) {
                 });
             } else {
 
-                res.render("home");
+                res.render('personalInterest', {email: req.body.user.email});
 
 
             }
@@ -808,6 +808,85 @@ app.post("/cadastro", function (req, res) {
         // });
     }
 });
+
+// app.get("/cadastro/:email/personalInterest", function (req, res) {
+//     User.find({ email: req.params.email }, function (err, foundUser) {
+//         if (err) {
+//             console.log("ERRO USUÁRIO NÃO ENCONTRADO!");
+//         } else {
+//             res.render("editprofile", { user: foundUser });
+//         }
+
+//     })
+// });
+
+app.get("/profile/:email/personalInterest/edit", function (req, res) {
+    console.log(req.body.personalInterest)
+    User.update({ email: req.params.email },{ $set: { personalInterest: [] } }, function(err, affected){
+        console.log('affected: ', affected);
+    });
+    res.render('personalInterestedit',{email:req.params.email})
+});
+
+app.get("/profileMember/:email/personalInterestMember/edit", function (req, res) {
+    console.log(req.body.personalInterest)
+    Member.update({ email: req.params.email },{ $set: { personalInterest: [] } }, function(err, affected){
+        console.log('affected: ', affected);
+    });
+    res.render('personalInterestMemberedit',{email:req.params.email})
+});
+
+app.put("/profile/:email/personalInterest/edit", function (req, res) {
+    console.log(req.body.personalInterest)
+    
+    User.updateOne({ email: req.params.email },{ $addToSet: { personalInterest: req.body.personalInterest } }, function (err, foundUser) {
+        if (err) {
+            console.log("ERRO USUÁRIO NÃO ENCONTRADO!");
+        } else {
+            res.redirect("/profile/"+req.params.email);
+        }
+
+    })
+});
+
+app.put("/profileMember/:email/personalInterestMember/edit", function (req, res) {
+    console.log(req.body.personalInterest)
+    Member.updateOne({ email: req.params.email },{ $addToSet: { personalInterest: req.body.personalInterest } }, function (err, foundUser) {
+        if (err) {
+            console.log("ERRO USUÁRIO NÃO ENCONTRADO!");
+        } else {
+            res.redirect("/profileMember/"+req.params.email);
+        }
+
+    })
+});
+
+app.put("/cadastro/:email/personalInterest", function (req, res) {
+    console.log(req.body.personalInterest)
+    User.updateOne({ email: req.params.email },{ $addToSet: { personalInterest: req.body.personalInterest } }, function (err, foundUser) {
+        if (err) {
+            console.log("ERRO USUÁRIO NÃO ENCONTRADO!");
+        } else {
+            res.render("home");
+            res.redirect("/");
+        }
+
+    })
+});
+
+app.put("/cadastro/:email/personalInterestMember", function (req, res) {
+    console.log(req.body.personalInterest)
+    Member.updateOne({ email: req.params.email },{ $addToSet: { personalInterest: req.body.personalInterest } }, function (err, foundUser) {
+        if (err) {
+            console.log("ERRO USUÁRIO NÃO ENCONTRADO!");
+        } else {
+            console.log('home')
+            res.redirect("/");
+        }
+
+    })
+});
+
 
 app.get("/addTags/:email", function (req, res) {
     res.render("home")
@@ -869,7 +948,7 @@ app.post("/cadastroMember", function (req, res) {
                 });
             } else {
                 console.log(newMember);
-                res.render("home");
+                res.render('personalInterestMember', {email: req.body.member.email});
             }
         })
     }
