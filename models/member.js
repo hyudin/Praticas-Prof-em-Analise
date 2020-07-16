@@ -6,7 +6,7 @@ var memberSchema = new mongoose.Schema({
     email: { type: String, required: true, unique: true },
     password: { type: String, required: true },
     age: { type: String, required: true },
-    documento: { type: Number, required: true },
+    documento: { type: String, required: true },
     city: { type: String, required: true },
     state: { type: String, required: true },
     grauDeEscolaridade:{ type: String, required: true },
