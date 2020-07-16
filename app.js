@@ -1114,6 +1114,30 @@ app.get("/profile/:email/followers", function (req, res) {
     })
 });
 
+app.get("/profileMember/:email/followers", function (req, res) {
+    User.find({ email: req.params.email }, function (err, user) {
+        if (err) {
+            console.log("ERRO USUÁRIO NÃO ENCONTRADO!");
+        } else {
+            // var friends = user.find()
+            console.log(user)
+
+            User.find({ 'friends': req.params.email }, function (err, followers) {
+                if (err) {
+                    console.log(err);
+                } else {
+                    Member.find({ 'friends': req.params.email }, function (err, followersMember){
+                    res.render("followers", { followers: followers, followersMember:followersMember, user: user, email: req.params.email })
+                    });
+                }
+
+            })
+
+
+        }
+
+    })
+});
 
 
 app.get("/profile/:email/friends/:friendsemail", function (req, res) {
