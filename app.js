@@ -1055,7 +1055,9 @@ app.get("/profile/:email/friends", function (req, res) {
                 if (err) {
                     console.log(err);
                 } else {
-                    res.render("friends", { friends: friends, user: user, email: req.params.email });
+                    Member.find({ 'email': userFriends }, function (err, members) {
+                    res.render("friends", { friends: friends, user: user, email: req.params.email, members: members });
+                    });
                 }
 
             })
