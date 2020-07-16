@@ -1333,7 +1333,10 @@ app.get("/profile/:email/pesquisadores", function (req, res) {
                     console.log(err)
                 }
                 else {
-                    res.render("pesquisadores", { users: users, user: user, email: req.params.email })
+                    Member.find({}, function(err,members){
+                        res.render("pesquisadores", { users: users, user: user, email: req.params.email, members: members })
+                    })
+                    
                 }
             });
         }
