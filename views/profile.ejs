@@ -165,19 +165,20 @@
 					<label class="mt-5"><i class="fas fa-thumbs-up mr-2"></i><%= post.likes.length %></label>
 				</div>
 				<div class="d-flex flex-column">
-					<% if (post.likes.indexOf(email)) { %>
-						<form action="/profile/<%= user.email %>/like/<%= post.id %>?_method=PUT" method="POST">
-							<input type="text" id="post[id]" name="post[id]" class="form-control" style="display:none"
-								value="<%= post.id %>">
-							<button type="submit" action="" class="btn btn-primary m-2"><i
-									class="far fa-thumbs-up "></i></button>
-						</form>
-					<% } else {%>
+					<% if (post.likes.includes(email)) { %>
 						<form action="/profile/<%= user.email %>/dislike/<%= post.id %>?_method=PUT" method="POST">
 							<input type="text" id="post[id]" name="post[id]" class="form-control" style="display:none"
 								value="<%= post.id %>">
 							<button type="submit" action="" class="btn btn-primary m-2"><i
 									class="far fa-thumbs-down "></i></button>
+						</form>
+					<% } else {%>
+						
+						<form action="/profile/<%= user.email %>/like/<%= post.id %>?_method=PUT" method="POST">
+							<input type="text" id="post[id]" name="post[id]" class="form-control" style="display:none"
+								value="<%= post.id %>">
+							<button type="submit" action="" class="btn btn-primary m-2"><i
+									class="far fa-thumbs-up "></i></button>
 						</form>
 					<% } %>
 					<input type="text" id="post[id]" name="post[id]" class="form-control" style="display:none"
