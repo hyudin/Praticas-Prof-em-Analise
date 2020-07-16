@@ -392,6 +392,9 @@ app.get("/profile", function (req, res) {
 // =================== SHOW ROUTE =====================
 app.get("/profile/:email", function (req, res) {
     useremail = req.params.email;
+    var count = 0;
+
+
     User.find({ email: req.params.email }, function (err, foundUser) {
         if (err) {
             console.log(err);
@@ -406,7 +409,13 @@ app.get("/profile/:email", function (req, res) {
                         if (err) {
                             console.log("erro ao carregar publs")
                         } else {
-                            res.render("profile", { posts: posts, user: foundUser, publs: publs, email: req.params.email });
+                            User.find({ friends: { $all: req.params.email } }, function (e, users) {
+                                Member.find({ friends: { $all: req.params.email } }, function (err, count) {
+                                    console.log(users.length + count.length)
+                                    res.render("profile", { posts: posts, user: foundUser, publs: publs, email: req.params.email, followers: users.length + count.length });
+                                });
+                            });
+
                         }
                     });
                     // console.log("Usuário encontrado");
@@ -434,7 +443,10 @@ app.get("/profileMember/:email", function (req, res) {
                 } else {
                     // console.log("Usuário encontrado");
                     // console.log(foundUser);
-                    res.render("profileMember", { posts: posts, user: foundUser, email: req.params.email });
+                    User.find({ friends: { $all: req.params.friendsemail } }, function (e, users) {
+                        console.log(users.length)
+                        res.render("profileMember", { posts: posts, user: foundUser, email: req.params.email, followers: users.length });
+                    });
 
                 }
 
@@ -577,7 +589,7 @@ app.get("/profileMember/:email/like/:id", function (req, res) {
                 if (err) {
                     console.log("Erro ao carregar posts!");
                 } else {
-                    res.render("profile", { posts: posts, user: user, email:req.params.email });
+                    res.render("profile", { posts: posts, user: user, email: req.params.email });
                 }
 
             });
@@ -721,7 +733,7 @@ app.put("/profile/:email/post/:id/edit", function (req, res) {
 });
 
 app.put("/profileMember/:email/post/:id/edit", function (req, res) {
-  
+
     console.log(req.body.post);
     Post.findByIdAndUpdate(req.params.id, req.body.post, function (err) {
         if (err) {
@@ -793,7 +805,7 @@ app.post("/cadastro", function (req, res) {
                 });
             } else {
 
-                res.render('personalInterest', {email: req.body.user.email});
+                res.render('personalInterest', { email: req.body.user.email });
 
 
             }
@@ -822,28 +834,28 @@ app.post("/cadastro", function (req, res) {
 
 app.get("/profile/:email/personalInterest/edit", function (req, res) {
     console.log(req.body.personalInterest)
-    User.update({ email: req.params.email },{ $set: { personalInterest: [] } }, function(err, affected){
+    User.update({ email: req.params.email }, { $set: { personalInterest: [] } }, function (err, affected) {
         console.log('affected: ', affected);
     });
-    res.render('personalInterestedit',{email:req.params.email})
+    res.render('personalInterestedit', { email: req.params.email })
 });
 
 app.get("/profileMember/:email/personalInterestMember/edit", function (req, res) {
     console.log(req.body.personalInterest)
-    Member.update({ email: req.params.email },{ $set: { personalInterest: [] } }, function(err, affected){
+    Member.update({ email: req.params.email }, { $set: { personalInterest: [] } }, function (err, affected) {
         console.log('affected: ', affected);
     });
-    res.render('personalInterestMemberedit',{email:req.params.email})
+    res.render('personalInterestMemberedit', { email: req.params.email })
 });
 
 app.put("/profile/:email/personalInterest/edit", function (req, res) {
     console.log(req.body.personalInterest)
-    
-    User.updateOne({ email: req.params.email },{ $addToSet: { personalInterest: req.body.personalInterest } }, function (err, foundUser) {
+
+    User.updateOne({ email: req.params.email }, { $addToSet: { personalInterest: req.body.personalInterest } }, function (err, foundUser) {
         if (err) {
             console.log("ERRO USUÁRIO NÃO ENCONTRADO!");
         } else {
-            res.redirect("/profile/"+req.params.email);
+            res.redirect("/profile/" + req.params.email);
         }
 
     })
@@ -851,11 +863,11 @@ app.put("/profile/:email/personalInterest/edit", function (req, res) {
 
 app.put("/profileMember/:email/personalInterestMember/edit", function (req, res) {
     console.log(req.body.personalInterest)
-    Member.updateOne({ email: req.params.email },{ $addToSet: { personalInterest: req.body.personalInterest } }, function (err, foundUser) {
+    Member.updateOne({ email: req.params.email }, { $addToSet: { personalInterest: req.body.personalInterest } }, function (err, foundUser) {
         if (err) {
             console.log("ERRO USUÁRIO NÃO ENCONTRADO!");
         } else {
-            res.redirect("/profileMember/"+req.params.email);
+            res.redirect("/profileMember/" + req.params.email);
         }
 
     })
@@ -863,7 +875,7 @@ app.put("/profileMember/:email/personalInterestMember/edit", function (req, res)
 
 app.put("/cadastro/:email/personalInterest", function (req, res) {
     console.log(req.body.personalInterest)
-    User.updateOne({ email: req.params.email },{ $addToSet: { personalInterest: req.body.personalInterest } }, function (err, foundUser) {
+    User.updateOne({ email: req.params.email }, { $addToSet: { personalInterest: req.body.personalInterest } }, function (err, foundUser) {
         if (err) {
             console.log("ERRO USUÁRIO NÃO ENCONTRADO!");
         } else {
@@ -876,7 +888,7 @@ app.put("/cadastro/:email/personalInterest", function (req, res) {
 
 app.put("/cadastro/:email/personalInterestMember", function (req, res) {
     console.log(req.body.personalInterest)
-    Member.updateOne({ email: req.params.email },{ $addToSet: { personalInterest: req.body.personalInterest } }, function (err, foundUser) {
+    Member.updateOne({ email: req.params.email }, { $addToSet: { personalInterest: req.body.personalInterest } }, function (err, foundUser) {
         if (err) {
             console.log("ERRO USUÁRIO NÃO ENCONTRADO!");
         } else {
@@ -948,7 +960,7 @@ app.post("/cadastroMember", function (req, res) {
                 });
             } else {
                 console.log(newMember);
-                res.render('personalInterestMember', {email: req.body.member.email});
+                res.render('personalInterestMember', { email: req.body.member.email });
             }
         })
     }
@@ -1043,7 +1055,7 @@ app.get("/profile/:email/friends", function (req, res) {
                 if (err) {
                     console.log(err);
                 } else {
-                    res.render("friends", { friends: friends, user: user, email:req.params.email });
+                    res.render("friends", { friends: friends, user: user, email: req.params.email });
                 }
 
             })
@@ -1066,7 +1078,7 @@ app.get("/profileMember/:email/friends", function (req, res) {
                 if (err) {
                     console.log(err);
                 } else {
-                    res.render("friendsMember", { friends: friends, user: user,  email:req.params.email });
+                    res.render("friendsMember", { friends: friends, user: user, email: req.params.email });
                 }
 
             })
@@ -1076,6 +1088,7 @@ app.get("/profileMember/:email/friends", function (req, res) {
 
     })
 });
+
 
 
 
@@ -1092,11 +1105,16 @@ app.get("/profile/:email/friends/:friendsemail", function (req, res) {
                 } else {
                     // console.log("Usuário encontrado");
                     // console.log(foundUser);
-                    Publ.find({ 'authorEmail': req.params.friendsemail  }, function (err, publs) {
+                    Publ.find({ 'authorEmail': req.params.friendsemail }, function (err, publs) {
                         if (err) {
                             console.log("erro ao carregar publs")
                         } else {
-                            res.render("friendsprofile", { posts: posts, user: foundUser, publs: publs, email:req.params.email });
+                            User.find({ friends: { $all: req.params.friendsemail } }, function (e, users) {
+                                Member.find({ friends: { $all: req.params.friendsemail }},function(err,count) {
+                                console.log(users.length+count.length)
+                                res.render("friendsprofile", { posts: posts, user: foundUser, publs: publs, email: req.params.email, followers: users.length+count.length });
+                            });
+                            });
                         }
                     });
 
@@ -1123,11 +1141,14 @@ app.get("/profileMember/:email/friends/:friendsemail", function (req, res) {
                 } else {
                     // console.log("Usuário encontrado");
                     // console.log(foundUser);
-                    Publ.find({ 'authorEmail': req.params.friendsemail  }, function (err, publs) {
+                    Publ.find({ 'authorEmail': req.params.friendsemail }, function (err, publs) {
                         if (err) {
                             console.log("erro ao carregar publs")
                         } else {
-                            res.render("friendsprofile", { posts: posts, user: foundUser, publs: publs, email:req.params.email });
+                            User.find({ friends: { $all: req.params.friendsemail } }, function (e, users) {
+                                console.log(users.length)
+                                res.render("friendsprofile", { posts: posts, user: foundUser, publs: publs, email: req.params.email, followers: users.length });
+                            });
                         }
                     });
 
@@ -1153,7 +1174,7 @@ app.get("/profile/:email/friends/:friendsemail/follow", function (req, res) {
         } else {
             console.log("oi")
             console.log(foundUsers)
-            res.redirect("/profile/" + req.params.email +"/friends")
+            res.redirect("/profile/" + req.params.email + "/friends")
 
             // User.friends.append(req.body.friendsemail)
             // res.render("friends", { user: foundUsers });
@@ -1169,7 +1190,7 @@ app.put("/profile/:email/friends/:friendsemail/follow", function (req, res) {
             console.log(err)
         } else {
             console.log("oi")
-            res.redirect("/profile/" + req.params.email +"/friends")
+            res.redirect("/profile/" + req.params.email + "/friends")
 
             // User.friends.append(req.body.friendsemail)
             // res.render("friends", { user: foundUsers });
@@ -1187,7 +1208,7 @@ app.get("/profileMember/:email/friends/:friendsemail/follow", function (req, res
         } else {
             console.log("oi")
             console.log(foundUsers)
-            res.redirect("/profileMember/" + req.params.email +"/friends")
+            res.redirect("/profileMember/" + req.params.email + "/friends")
 
             // User.friends.append(req.body.friendsemail)
             // res.render("friends", { user: foundUsers });
@@ -1203,7 +1224,7 @@ app.put("/profileMember/:email/friends/:friendsemail/follow", function (req, res
             console.log(err)
         } else {
             console.log("oi")
-            res.redirect("/profileMember/" + req.params.email +"/friends")
+            res.redirect("/profileMember/" + req.params.email + "/friends")
 
             // User.friends.append(req.body.friendsemail)
             // res.render("friends", { user: foundUsers });
@@ -1288,7 +1309,7 @@ app.get("/profile/:email/pesquisadores", function (req, res) {
                     console.log(err)
                 }
                 else {
-                    res.render("pesquisadores", { users: users, user: user, email:req.params.email })
+                    res.render("pesquisadores", { users: users, user: user, email: req.params.email })
                 }
             });
         }
@@ -1306,7 +1327,7 @@ app.get("/profileMember/:email/pesquisadores", function (req, res) {
                     console.log(err)
                 }
                 else {
-                    res.render("pesquisadoresMember", { users: users, user: user,  email:req.params.email })
+                    res.render("pesquisadoresMember", { users: users, user: user, email: req.params.email })
                 }
             });
         }

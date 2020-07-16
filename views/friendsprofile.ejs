@@ -29,29 +29,29 @@
 
 			<ul class="navbar-nav mr-auto mt-2 mt-lg-0">
 				<li class="nav-item active">
-					<a class="nav-link" href="/profileMember/<%= email %>">Home <span
+					<a class="nav-link" href="/profile/<%= email %>">Home <span
 							class="sr-only">(current)</span></a>
 				</li>
 				
 				<li class="nav-item">
-					<a class="nav-link" href="/profileMember/<%= email %>/edit">Editar Perfil <span
+					<a class="nav-link" href="/profile/<%= email %>/edit">Editar Perfil <span
 							class="sr-only"></span></a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link" href="/profileMember/<%= email %>/friends">Conexões<span
+					<a class="nav-link" href="/profile/<%= email %>/friends">Conexões<span
 							class="sr-only"></span></a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link" href="/profileMember/<%= email %>/Pesquisadores">Sugestões<span
+					<a class="nav-link" href="/profile/<%= email %>/Pesquisadores">Sugestões<span
 							class="sr-only"></span></a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link" href="/profileMember/<%= email %>/publicacoes">Publicações<span
+					<a class="nav-link" href="/profile/<%= email %>/publicacoes">Publicações<span
 							class="sr-only"></span></a>
 				</li>
 				
 			</ul>
-			<form action="/profileMember/<%= email %>/search/" method="get" role="form" class="form-inline my-2 my-lg-0">
+			<form action="/profile/<%= email %>/search/" method="get" role="form" class="form-inline my-2 my-lg-0">
 				<input class="form-control mr-sm-2" type="search"  class="query" name="query" placeholder="Search">
 				<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Buscar</button>
 			</form>
@@ -197,6 +197,7 @@
 					<p id="inic-dados" class="text-center m-0">Começou a estudar Ciência de dados em <%= datac %> em
 						<%= user.instPesquisa %></p>
 					<% }; %>
+					<h3 id="followers" class="text-center pt-2"><%= followers %> Seguidores</h3>
 					<h3 id="interessesTitle" class="text-center pt-2">Interesses</h3>
 					<label id="interesses" class="text-center pt-2 " ><%= user.personalInterest %></label>
 					<a href="<%= user.curriculum %>" class="text-center"><label id="Curriculum Lates" class="text-center m-0"></label>Visitar Curriculo</a>
