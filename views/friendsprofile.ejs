@@ -1,4 +1,69 @@
-<%- include('partials/header-profile') -%>
+<!doctype html>
+<html lang="pt-br">
+
+<head>
+
+	<title>Rede+Cientistas ::: Registro</title>
+	<link rel="icon" th:href="@{/image/favicon.ico}" />
+	<!-- Required meta tags -->
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="description" content="Rede Social para Cientistas" />
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+		integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+	<link rel="stylesheet" href="/css/profile.css" type="text/css">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
+
+
+</head>
+
+<body>
+
+	<nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
+		<a class="navbar-brand pr-3 border-right" href="#"><img id="imgNavbar" src="/css/img/logo.png">
+			Rede+Cientistas</a>
+		<div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+		
+
+			<ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+				<li class="nav-item active">
+					<a class="nav-link" href="/profileMember/<%= email %>">Home <span
+							class="sr-only">(current)</span></a>
+				</li>
+				
+				<li class="nav-item">
+					<a class="nav-link" href="/profileMember/<%= email %>/edit">Editar Perfil <span
+							class="sr-only"></span></a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="/profileMember/<%= email %>/friends">Conexões<span
+							class="sr-only"></span></a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="/profileMember/<%= email %>/Pesquisadores">Sugestões<span
+							class="sr-only"></span></a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="/profileMember/<%= email %>/publicacoes">Publicações<span
+							class="sr-only"></span></a>
+				</li>
+				
+			</ul>
+			<form action="/profileMember/<%= email %>/search/" method="get" role="form" class="form-inline my-2 my-lg-0">
+				<input class="form-control mr-sm-2" type="search"  class="query" name="query" placeholder="Search">
+				<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Buscar</button>
+			</form>
+			<ul class="navbar-nav  mt-2 mt-lg-0">
+				<li class="nav-item">
+					<a class="nav-link" href="/">Logout<span
+						class="sr-only"></span></a>
+				</li>
+			</ul>
+		</div>
+
+	</nav>
 <div class="container-fluid">
 	<div class="row h-100">
 		<div class="col-8 h-100 border-right">
@@ -33,21 +98,23 @@
 										<%= publ.arquivo %></a></button>
 							</div>
 							<div class="col-md-auto">
-								<% if (publ.likes.indexOf(email)) { %>
-									<form action="/profile/<%= email %>/publ/<%= publ.id %>/like?_method=PUT"
-										method="POST">
-										<input type="text" id="publ[id]" name="publ[id]" class="form-control" style="display:none"
-											value="<%= publ.id %>">
-										<button type="submit" action="" class="btn btn-primary m-2"><i
-												class="far fa-thumbs-up "></i></button>
-									</form>
-								<% } else {%>
+								<% if (publ.likes.includes(email)) { %>
 									<form action="/profile/<%= email %>/publ/<%= publ.id %>/dislike?_method=PUT"
 										method="POST">
 										<input type="text" id="publ[id]" name="publ[id]" class="form-control" style="display:none"
 											value="<%= publ.id %>">
 										<button type="submit" action="" class="btn btn-primary m-2"><i
 												class="far fa-thumbs-down "></i></button>
+									</form>
+									
+								<% } else {%>
+									
+									<form action="/profile/<%= email %>/publ/<%= publ.id %>/like?_method=PUT"
+										method="POST">
+										<input type="text" id="publ[id]" name="publ[id]" class="form-control" style="display:none"
+											value="<%= publ.id %>">
+										<button type="submit" action="" class="btn btn-primary m-2"><i
+												class="far fa-thumbs-up "></i></button>
 									</form>
 								<% } %>
 							</div>

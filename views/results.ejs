@@ -114,13 +114,25 @@
 									<%= publ.arquivo %></a></button>
 						</div>
 						<div class="col-md-auto">
-							<form action="/profile/<%= publ.authorEmail %>/publ/<%= publ.id %>/like?_method=PUT"
-								method="POST">
-								<input type="text" id="publ[id]" name="publ[id]" class="form-control"
-									style="display:none" value="<%= publ.id %>">
-								<button type="submit" action="" class="btn btn-primary my-2"><i
-										class="far fa-thumbs-up "></i></button>
-							</form>
+							<% if (publ.likes.includes(email)) { %>
+										<form action="/profile/<%= email %>/publ/<%= publ._id %>/dislike?_method=PUT"
+											method="POST">
+											<input type="text" id="publ[id]" name="publ[id]" class="form-control" style="display:none"
+												value="<%= publ.id %>">
+											<button type="submit" action="" class="btn btn-primary m-2"><i
+													class="far fa-thumbs-down "></i></button>
+										</form>
+										
+									<% } else {%>
+										
+										<form action="/profile/<%= email %>/publ/<%= publ._id %>/like?_method=PUT"
+											method="POST">
+											<input type="text" id="publ[id]" name="publ[id]" class="form-control" style="display:none"
+												value="<%= publ.id %>">
+											<button type="submit" action="" class="btn btn-primary m-2"><i
+													class="far fa-thumbs-up "></i></button>
+										</form>
+									<% } %>
 						</div>
 						<% if (publ.authorEmail == email) { %>
 						<div class="col-md-auto">

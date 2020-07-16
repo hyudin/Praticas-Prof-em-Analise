@@ -27,26 +27,26 @@
 		<div class="collapse navbar-collapse" id="navbarTogglerDemo02">
 			<ul class="navbar-nav mr-auto mt-2 mt-lg-0">
 				<li class="nav-item ">
-					<a class="nav-link" href="/profileMember/<%= useremail %>">Home <span class="sr-only"></span></a>
+					<a class="nav-link" href="/profileMember/<%= email %>">Home <span class="sr-only"></span></a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link" href="/profileMember/<%= useremail %>/edit">Editar Perfil <span
+					<a class="nav-link" href="/profileMember/<%= email %>/edit">Editar Perfil <span
 							class="sr-only"></span></a>
 				</li>
 				<li class="nav-item active">
-					<a class="nav-link" href="/profileMember/<%= useremail %>/friends">Conexões<span
+					<a class="nav-link" href="/profileMember/<%= email %>/friends">Conexões<span
 							class="sr-only">(current)</span></a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link" href="/profileMember/<%= useremail %>/Pesquisadores">Sugestões<span
+					<a class="nav-link" href="/profileMember/<%= email %>/Pesquisadores">Sugestões<span
 							class="sr-only"></span></a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link" href="/profileMember/<%= useremail %>/Publicacoes">Publicações<span
+					<a class="nav-link" href="/profileMember/<%= email %>/Publicacoes">Publicações<span
 							class="sr-only"></span></a>
 				</li>
 			</ul>
-			<form action="/profileMember/<%= useremail %>/search/" method="get" role="form" class="form-inline my-2 my-lg-0">
+			<form action="/profileMember/<%= email %>/search/" method="get" role="form" class="form-inline my-2 my-lg-0">
 				<input class="form-control mr-sm-2" type="search"  class="query" name="query" placeholder="Search">
 				<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Buscar</button>
 			</form>
@@ -66,14 +66,14 @@
                     <img src="<%= user.image %>"  class="mx-auto d-block shadow rounded-circle profile-image mb-3"
                         style="width:200px;" alt="">
                     <div >
-                    <a class="text-center" href="/profileMember/<%= useremail %>/friends/<%= user.email %>"><p class="text-center">Ir para o perfil</p></a>
+                    <a class="text-center" href="/profileMember/<%= email %>/friends/<%= user.email %>"><p class="text-center">Ir para o perfil</p></a>
                     </div>
                     <h4 id="username" name="username" class="text-center py-2"><%= user.name %></h4>
                     <p id="idade" class="text-center m-0"><%= user.age %></p>
                     <p id="cidade-estado" class="text-center m-0"><%= user.city %>,<%= user.state %></p>
                     <p id="nivel-curso" class="text-center m-0">Graduado em <%= user.course %></p>
                     <p id="universidade" class="text-center m-0"><%= user.university %></p>
-                    <form action="/profileMember/<%= useremail %>/friends/<%= user.email %>/unfollow?_method=PUT" method="POST">
+                    <form action="/profileMember/<%= email %>/friends/<%= user.email %>/unfollow?_method=PUT" method="POST">
                         <button type="submit" class="btn mx-auto d-block btn-primary m-2">Deixar de seguir</button>
                     </form>
                 </div>

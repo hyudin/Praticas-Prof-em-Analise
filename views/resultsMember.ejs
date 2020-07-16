@@ -29,29 +29,29 @@
 
 			<ul class="navbar-nav mr-auto mt-2 mt-lg-0">
 				<li class="nav-item active">
-					<a class="nav-link" href="/profileMember/<%= useremail %>">Home <span
+					<a class="nav-link" href="/profileMember/<%= email %>">Home <span
 							class="sr-only">(current)</span></a>
 				</li>
 
 				<li class="nav-item">
-					<a class="nav-link" href="/profileMember/<%= useremail %>/edit">Editar Perfil <span
+					<a class="nav-link" href="/profileMember/<%= email %>/edit">Editar Perfil <span
 							class="sr-only"></span></a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link" href="/profileMember/<%= useremail %>/friends">Conexões<span
+					<a class="nav-link" href="/profileMember/<%= email %>/friends">Conexões<span
 							class="sr-only"></span></a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link" href="/profileMember/<%= useremail %>/Pesquisadores">Sugestões<span
+					<a class="nav-link" href="/profileMember/<%= email %>/Pesquisadores">Sugestões<span
 							class="sr-only"></span></a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link" href="/profileMember/<%= useremail %>/publicacoes">Publicações<span
+					<a class="nav-link" href="/profileMember/<%= email %>/publicacoes">Publicações<span
 							class="sr-only"></span></a>
 				</li>
 
 			</ul>
-			<form action="/profileMember/<%= useremail %>/search/" method="get" role="form"
+			<form action="/profileMember/<%= email %>/search/" method="get" role="form"
 				class="form-inline my-2 my-lg-0">
 				<input class="form-control mr-sm-2" type="search" class="query" name="query" placeholder="Search">
 				<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Buscar</button>
@@ -72,6 +72,8 @@
                 if(users.length > 0){
         %>
 		<p class="mb-5 text-center">Resultados da pesquisa por <%= search %>:</p>
+
+		<h1 class="text-center my-5">Usuários</h1>
 		<div class="row h-100">
 			<% users.forEach(function(user){ %>
 			<div class="col-3 h-100 border-right">
@@ -86,7 +88,7 @@
 						<p id="cidade-estado" class="text-center m-0"><%= user.city %>,<%= user.state %></p>
 						<p id="nivel-curso" class="text-center m-0">Graduado em <%= user.course %></p>
 						<p id="universidade" class="text-center m-0"><%= user.university %></p>
-						<form action="/profileMember/<%= useremail %>/friends/<%= user.email %>/follow?_method=PUT"
+						<form action="/profile/<%= email %>/friends/<%= user.email %>/follow?_method=PUT"
 							method="POST">
 							<button type="submit" class="btn mx-auto d-block btn-primary m-2">Seguir</button>
 						</form>
@@ -96,10 +98,68 @@
 
 			<% }); %>
 		</div>
-		<% } else{ %>
+		<% } %>
+		<% if(publs.length > 0){ %>
+		<h1 class="text-center my-5">Publicações</h1>
+		<% publs.forEach(function(publ){ %>
+		<div class="card shadow mb-5 mx-4">
+			<div class="card-body">
+				<div class="card mb-3">
+					<div class="card-header">
+						<div class="card-title">
+							<h1><%= publ.publTitle %></h1>
+						</div>
+					</div>
+					<div class="card-body">
+						<%= publ.publText %>
+						<p class="mt-5 mb-1">Local de Publicação: <%= publ.local %></p>
+						<p class="mt-2 mb-1">Ano de Publicação: <%= publ.ano %></p>
+						<p class="mt-2 mb-1">Palavras Chave: <%= publ.tags %></p>
+						<p class="mt-2 mb-1">URL: <a href='https://<%= publ.url %>'><%= publ.url %></a></p>
+						<p class="mt-2 mb-1">Autor: <%= publ.authorName %></p>
+					</div>
+					<div class="card-footer row">
+						<div class="col-md-auto my-2">
+							<button class="btn btn-dark "><a style="color: white" href="/image/<%= publ.arquivo %>"
+									download><i class="fas fa-arrow-circle-down pr-2"></i>
+									<%= publ.arquivo %></a></button>
+						</div>
+						<div class="col-md-auto">
+							<% if (publ.likes.includes(email)) { %>
+										<form action="/profileMember/<%= email %>/publ/<%= publ._id %>/dislike?_method=PUT"
+											method="POST">
+											<input type="text" id="publ[id]" name="publ[id]" class="form-control" style="display:none"
+												value="<%= publ.id %>">
+											<button type="submit" action="" class="btn btn-primary m-2"><i
+													class="far fa-thumbs-down "></i></button>
+										</form>
+										
+									<% } else {%>
+										
+										<form action="/profileMember/<%= email %>/publ/<%= publ._id %>/like?_method=PUT"
+											method="POST">
+											<input type="text" id="publ[id]" name="publ[id]" class="form-control" style="display:none"
+												value="<%= publ.id %>">
+											<button type="submit" action="" class="btn btn-primary m-2"><i
+													class="far fa-thumbs-up "></i></button>
+										</form>
+									<% } %>
+						</div>
+						<div class="col-md-auto ">
+						<p class="my-3 text-right"><i class="fas fa-thumbs-up mr-5"></i><%= publ.likes.length %></p>
+					</div>
+					</div>
+				</div>
+			</div>
+
+			<% }); %>
+		</div>
+		<% } %>
+		<% }  else{ %>
 		<p class="mb-5 text-center">Nenhum resultado encontrado para <%= search %>!</p>
 		<% 
-            }
+		
+	
         }
         %>
 	</div>

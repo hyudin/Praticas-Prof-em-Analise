@@ -118,7 +118,7 @@ app.get("/profileMember/:email/publicacoes", (req, res) => {
         const data = results[0];
         console.log(data);
 
-        res.render('publicacoes', { email: req.params.email, publs: results })
+        res.render('publicacoesMember', { email: req.params.email, publs: results })
     })
 });
 
@@ -150,7 +150,7 @@ app.get("/profileMember/:email/search/", function (req, res) {
         Publ.find({ tags: { $all: searchParams } }, function (e, publs) {
             console.log("PUBLS")
             console.log(publs)
-            res.render('resultsMember', { results: true, search: req.query.query, users: users, publs: publs });
+            res.render('resultsMember', { results: true, search: req.query.query, users: users, publs: publs, email: req.params.email });
         })
     });
 });
@@ -1044,7 +1044,13 @@ app.get("/profileMember/:email/friends/:friendsemail", function (req, res) {
                 } else {
                     // console.log("Usuário encontrado");
                     // console.log(foundUser);
-                    res.render("friendsprofileMember", { posts: posts, user: foundUser, email:req.params.email });
+                    Publ.find({ 'authorEmail': req.params.friendsemail  }, function (err, publs) {
+                        if (err) {
+                            console.log("erro ao carregar publs")
+                        } else {
+                            res.render("friendsprofile", { posts: posts, user: foundUser, publs: publs, email:req.params.email });
+                        }
+                    });
 
                 }
 

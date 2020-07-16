@@ -3,7 +3,7 @@
 
 <head>
 
-	<title>Rede+Cientistas ::: Registro</title>
+	<title>Rede+Cientistas ::: Publicações</title>
 	<link rel="icon" th:href="@{/image/favicon.ico}" />
 	<!-- Required meta tags -->
 	<meta charset="utf-8">
@@ -27,49 +27,47 @@
 		<div class="collapse navbar-collapse" id="navbarTogglerDemo02">
 			<ul class="navbar-nav mr-auto mt-2 mt-lg-0">
 				<li class="nav-item active">
-					<a class="nav-link" href="/profileMember/<%= useremail %>">Home <span
-							class="sr-only">(current)</span></a>
+					<a class="nav-link" href="/profileMember/<%= email %>">Home <span class="sr-only">(current)</span></a>
 				</li>
-				
+
 				<li class="nav-item">
-					<a class="nav-link" href="/profileMember/<%= useremail %>/edit">Editar Perfil <span
+					<a class="nav-link" href="/profileMember/<%= email %>/edit">Editar Perfil <span
 							class="sr-only"></span></a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link" href="/profileMember/<%= useremail %>/friends">Conexões<span
-							class="sr-only"></span></a>
+					<a class="nav-link" href="/profileMember/<%= email %>/friends">Conexões<span class="sr-only"></span></a>
 				</li>
 				<li class="nav-item ">
-					<a class="nav-link" href="/profileMember/<%= useremail %>/Pesquisadores">Sugestões<span
-							class="sr-only"></span></a>
-                </li>
-                <li class="nav-item active">
-					<a class="nav-link" href="/profileMember/<%= useremail %>/Publicacoes">Publicações<span
+					<a class="nav-link" href="/profileMember/<%= email %>/Pesquisadores">Sugestões<span
 							class="sr-only"></span></a>
 				</li>
-				
+				<li class="nav-item active">
+					<a class="nav-link" href="/profileMember/<%= email %>/Publicacoes">Publicações<span
+							class="sr-only"></span></a>
+				</li>
+
 			</ul>
-			<form action="/profileMember/<%= useremail %>/search/" method="get" role="form" class="form-inline my-2 my-lg-0">
-				<input class="form-control mr-sm-2" type="search"  class="query" name="query" placeholder="Search">
+			<form action="/profileMember/<%= email %>/search/" method="get" role="form" class="form-inline my-2 my-lg-0">
+				<input class="form-control mr-sm-2" type="search" class="query" name="query" placeholder="Search">
 				<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Buscar</button>
 			</form>
 			<ul class="navbar-nav  mt-2 mt-lg-0">
 				<li class="nav-item">
-					<a class="nav-link" href="/">Logout<span
-						class="sr-only"></span></a>
+					<a class="nav-link" href="/">Logout<span class="sr-only"></span></a>
 				</li>
 			</ul>
 		</div>
 
-    </nav>
-    
-    
+	</nav>
+
+
 	<div class="container-fluid">
 		<div class="row justify-content-md-center">
 			<div class="col-md-10">
 				<h1 class="my-4 text-center">Publicações</h1>
-				<% publs.forEach(function(publ){ %>
+				
 				<div class="card shadow mb-5 mx-4">
+					<% publs.forEach(function(publ){ %>
 					<div class="card-body">
 						<div class="card mb-3">
 							<div class="card-header">
@@ -93,14 +91,27 @@
 											<%= publ.arquivo %></a></button>
 								</div>
 								<div class="col-md-auto">
-									<form action="/profileMember/<%= email %>/publ/<%= publ.id %>/like?_method=PUT"
-										method="POST">
-										<input type="text" id="publ[id]" name="publ[id]" class="form-control"
-											style="display:none" value="<%= publ.id %>">
-										<button type="submit" action="" class="btn btn-primary my-2"><i
-												class="far fa-thumbs-up "></i></button>
-									</form>
+									<% if (publ.likes.includes(email)) { %>
+										<form action="/profileMember/<%= email %>/publ/<%= publ._id %>/dislike?_method=PUT"
+											method="POST">
+											<input type="text" id="publ[id]" name="publ[id]" class="form-control" style="display:none"
+												value="<%= publ.id %>">
+											<button type="submit" action="" class="btn btn-primary m-2"><i
+													class="far fa-thumbs-down "></i></button>
+										</form>
+										
+									<% } else {%>
+										
+										<form action="/profileMember/<%= email %>/publ/<%= publ._id %>/like?_method=PUT"
+											method="POST">
+											<input type="text" id="publ[id]" name="publ[id]" class="form-control" style="display:none"
+												value="<%= publ.id %>">
+											<button type="submit" action="" class="btn btn-primary m-2"><i
+													class="far fa-thumbs-up "></i></button>
+										</form>
+									<% } %>
 								</div>
+								
 								<div class="col-md-auto ">
 									<p class="my-3 text-right"><i
 											class="fas fa-thumbs-up mr-5"></i><%= publ.likes.length %></p>
