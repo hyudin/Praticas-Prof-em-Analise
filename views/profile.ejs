@@ -9,16 +9,32 @@
 					<div class="card-body">
 						<h3>Criar Publicação</h3>
 						<div class="input-group-append">
-							<input type="text" id="newPubl[publTitle]" name="newPubl[publTitle]" class="form-control mb-2 pb-2"
-								placeholder="Título da Publicação" autofocus required>
-							</div>
+							<input type="text" id="newPubl[publTitle]" name="newPubl[publTitle]"
+								class="form-control mb-2 pb-2" placeholder="Título da Publicação" autofocus required>
+						</div>
+						<div class="input-group-append">
+							<input type="number" id="newPubl[ano]" name="newPubl[ano]" class="form-control mb-2 pb-2"
+								placeholder="Ano da Publicação" autofocus required>
+						</div>
+						<div class="input-group-append">
+							<input type="text" id="newPubl[local]" name="newPubl[local]" class="form-control mb-2 pb-2"
+								placeholder="Local da Publicação" autofocus required>
+						</div>
+						<div class="input-group-append">
+							<input type="text" id="newPubl[tags]" name="newPubl[tags]" class="form-control mb-2 pb-2"
+								placeholder="Palavras Chave" autofocus required>
+						</div>
+						<div class="input-group-append">
+							<input type="text" id="newPubl[url]" name="newPubl[url]" class="form-control mb-2 pb-2"
+								placeholder="URL da Publicação" autofocus required>
+						</div>
 						<div class="input-group postBox">
 							<input type="text" id="newPubl[authorName]" name="newPubl[authorName]" class="form-control"
 								style="display:none" value="<%= user.name %>" autofocus required>
 							<input type="text" id="newPubl[authorEmail]" name="newPubl[authorEmail]"
 								class="form-control" style="display:none" value="<%= user.email %>" autofocus required>
-							<textarea id="newPubl[publText]" name="newPubl[publText]" class="form-control" placeholder="Descrição da Publicação"
-								aria-label="With textarea"></textarea>
+							<textarea id="newPubl[publText]" name="newPubl[publText]" class="form-control"
+								placeholder="Descrição da Publicação" aria-label="With textarea"></textarea>
 							<div class="input-group-append postBox">
 								<button type="submit" class="input-group-text"><i
 										class="fas fa-paper-plane px-3"></i></button>
@@ -27,7 +43,8 @@
 						<div class="custom-file mb-3 mt-3">
 							<input type="file" class="custom-file-input" name="newPubl[file]" id="newPubl[file]"
 								onchange="readSingleFile(this.files)">
-							<label class="custom-file-label" for="newPubl[file]" id="file-label">Escolha um arquivo</label>
+							<label class="custom-file-label" for="newPubl[file]" id="file-label">Escolha um
+								arquivo</label>
 						</div>
 			</form>
 		</div>
@@ -53,6 +70,84 @@
 	</form>
 	<% }); %>
 
+	<h1 class="my-3 text-center"> Minhas Publicações</h1>
+	<% publs.forEach(function(publ){ %>
+	<div class="card shadow mb-5 mx-4">
+
+		<div class="card-body">
+			<div class="card mb-3">
+				<div class="card-header">
+					<div class="card-title">
+						<h1><%= publ.publTitle %></h1>
+					</div>
+				</div>
+				<div class="card-body">
+					<%= publ.publText %>
+
+					<p class="mt-5 mb-1">Local de Publicação: <%= publ.local %></p>
+					<p class="mt-2 mb-1">Ano de Publicação: <%= publ.ano %></p>
+					<p class="mt-2 mb-1">Palavras Chave: <%= publ.tags %></p>
+
+					<p class="mt-2 mb-1">URL: <a href='https://<%= publ.url %>'><%= publ.url %></a></p>
+					<p class="mt-2 mb-1">Autor: <%= publ.authorName %></p>
+				</div>
+				<div class="card-footer row">
+					<div class="col-md-auto my-2">
+						<button class="btn btn-dark "><a style="color: white" href="/image/<%= publ.arquivo %>"
+								download><i class="fas fa-arrow-circle-down pr-2"></i>
+								<%= publ.arquivo %></a></button>
+					</div>
+					<div class="col-md-auto">
+
+						<% if (publ.likes.indexOf(email)) { %>
+							<form action="/profile/<%= email %>/publ/<%= publ.id %>/like?_method=PUT"
+								method="POST">
+								<input type="text" id="publ[id]" name="publ[id]" class="form-control" style="display:none"
+									value="<%= publ.id %>">
+								<button type="submit" action="" class="btn btn-primary m-2"><i
+										class="far fa-thumbs-up "></i></button>
+							</form>
+						<% } else {%>
+							<form action="/profile/<%= email %>/publ/<%= publ.id %>/dislike?_method=PUT"
+								method="POST">
+								<input type="text" id="publ[id]" name="publ[id]" class="form-control" style="display:none"
+									value="<%= publ.id %>">
+								<button type="submit" action="" class="btn btn-primary m-2"><i
+										class="far fa-thumbs-down "></i></button>
+							</form>
+						<% } %>
+					</div>
+					<div class="col-md-auto">
+						<input type="text" id="publ[id]" name="publ[id]" class="form-control" style="display:none"
+							value="<%= publ.id %>" autofocus required>
+						<a href="/profile/<%= publ.authorEmail %>/publ/<%= publ.id %>/edit/" id="btnEdit" onClick=" "
+							class="btn btn-secondary my-2"><i id="btnEditImage" class="far fa-edit "></i></a>
+					</div>
+					<div class="col-md-auto">
+						<form action="/profile/<%= publ.authorEmail %>/publ/<%= publ.id %>/del?_method=DELETE"
+							method="POST">
+							<input type="text" id="publ[id]" name="publ[id]" class="form-control" style="display:none"
+								value="<%= publ.id %>" autofocus required>
+							<button type="submit" class="btn btn-danger my-2"><i
+									class="far fa-trash-alt px-1"></i></button>
+						</form>
+					</div>
+					<div class="col-md-auto ">
+						<p class=" my-3 text-right"><i class="fas fa-thumbs-up mr-4"></i><%= publ.likes.length %></p>
+					</div>
+
+				</div>
+
+
+
+			</div>
+		</div>
+	</div>
+	<% }); %>
+
+
+	<h1 class="text-center my-5">Meus Posts</h1>
+
 	<% posts.forEach(function(post){ %>
 	<div class="card shadow mb-5 mx-4">
 		<div class="card-body">
@@ -70,13 +165,21 @@
 					<label class="mt-5"><i class="fas fa-thumbs-up mr-2"></i><%= post.likes.length %></label>
 				</div>
 				<div class="d-flex flex-column">
-
-					<form action="/profile/<%= user.email %>/like/<%= post.id %>?_method=PUT" method="POST">
-						<input type="text" id="post[id]" name="post[id]" class="form-control" style="display:none"
-							value="<%= post.id %>">
-						<button type="submit" action="" class="btn btn-primary m-2"><i
-								class="far fa-thumbs-up "></i></button>
-					</form>
+					<% if (post.likes.indexOf(email)) { %>
+						<form action="/profile/<%= user.email %>/like/<%= post.id %>?_method=PUT" method="POST">
+							<input type="text" id="post[id]" name="post[id]" class="form-control" style="display:none"
+								value="<%= post.id %>">
+							<button type="submit" action="" class="btn btn-primary m-2"><i
+									class="far fa-thumbs-up "></i></button>
+						</form>
+					<% } else {%>
+						<form action="/profile/<%= user.email %>/dislike/<%= post.id %>?_method=PUT" method="POST">
+							<input type="text" id="post[id]" name="post[id]" class="form-control" style="display:none"
+								value="<%= post.id %>">
+							<button type="submit" action="" class="btn btn-primary m-2"><i
+									class="far fa-thumbs-down "></i></button>
+						</form>
+					<% } %>
 					<input type="text" id="post[id]" name="post[id]" class="form-control" style="display:none"
 						value="<%= post.id %>" autofocus required>
 					<a href="/profile/<%= user.email %>/post/<%= post.id %>/edit/" id="btnEdit" onClick=" "
@@ -94,6 +197,8 @@
 		</div>
 	</div>
 	<% }); %>
+
+
 
 
 
@@ -144,12 +249,12 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
 	integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
 	crossorigin="anonymous"></script>
-	<script>
-		function readSingleFile(e) {
-			const name = e[0].name;
-			document.getElementById("file-label").textContent = name;
-		}
-	</script>
+<script>
+	function readSingleFile(e) {
+		const name = e[0].name;
+		document.getElementById("file-label").textContent = name;
+	}
+</script>
 
 </body>
 

@@ -27,27 +27,27 @@
 		<div class="collapse navbar-collapse" id="navbarTogglerDemo02">
 			<ul class="navbar-nav mr-auto mt-2 mt-lg-0">
 				<li class="nav-item ">
-					<a class="nav-link" href="/profile/<%= useremail %>">Home <span class="sr-only"></span></a>
+					<a class="nav-link" href="/profile/<%= email %>">Home <span class="sr-only"></span></a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link" href="/profile/<%= useremail %>/edit">Editar Perfil <span
+					<a class="nav-link" href="/profile/<%= email %>/edit">Editar Perfil <span
 							class="sr-only"></span></a>
 				</li>
 				<li class="nav-item ">
-					<a class="nav-link" href="/profile/<%= useremail %>/friends">Conexões<span
+					<a class="nav-link" href="/profile/<%= email %>/friends">Conexões<span
 							class="sr-only">(current)</span></a>
 				</li>
 				<li class="nav-item active">
-					<a class="nav-link" href="/profile/<%= useremail %>/Pesquisadores">Sugestões<span
+					<a class="nav-link" href="/profile/<%= email %>/Pesquisadores">Sugestões<span
 							class="sr-only"></span></a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link" href="/profile/<%= useremail %>/Publicacoes">Publicações<span
+					<a class="nav-link" href="/profile/<%= email %>/Publicacoes">Publicações<span
 							class="sr-only"></span></a>
 				</li>
 				
 			</ul>
-			<form action="/profile/<%= useremail %>/search/" method="get" role="form" class="form-inline my-2 my-lg-0">
+			<form action="/profile/<%= email %>/search/" method="get" role="form" class="form-inline my-2 my-lg-0">
 				<input class="form-control mr-sm-2" type="search"  class="query" name="query" placeholder="Search">
 				<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Buscar</button>
 			</form>
