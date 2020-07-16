@@ -74,6 +74,11 @@
                             required>
                     </div>
                     <div class="form-group">
+                        <label for="firstName" class="control-label">Documento</label>
+                        <input type="number" id="user[documento]" name="user[documento]" class="form-control" value="<%= user.documento %>" autofocus
+                            required>
+                    </div>
+                    <div class="form-group">
                         <label for="estado">Estado</label>
                         <select class="custom-select" id="user[state]" name="user[state]" required>
                             <option selected disabled value="<%= user.state %>"></option>
@@ -86,6 +91,11 @@
                             <option selected disabled value="<%= user.city %>"></option>
                             <option>...</option>
                         </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="firstName" class="control-label">Grau de escolaridade</label>
+                        <input type="text" id="user[grauDeEscolaridade]" name="user[grauDeEscolaridade]" class="form-control" value="<%= user.grauDeEscolaridade %>" autofocus
+                            required>
                     </div>
                     <script language="JavaScript" type="text/javascript" charset="utf-8">
                         new dgCidadesEstados({
