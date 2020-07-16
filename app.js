@@ -1171,7 +1171,7 @@ app.get("/profileMember/:email/friends/:friendsemail", function (req, res) {
                         } else {
                             User.find({ friends: { $all: req.params.friendsemail } }, function (e, users) {
                                 console.log(users.length)
-                                res.render("friendsprofile", { posts: posts, user: foundUser, publs: publs, email: req.params.email, followers: users.length });
+                                res.render("friendsprofileMember", { posts: posts, user: foundUser, publs: publs, email: req.params.email, followers: users.length });
                             });
                         }
                     });
