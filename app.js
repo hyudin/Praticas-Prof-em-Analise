@@ -401,10 +401,15 @@ app.get("/profile/:email", function (req, res) {
             console.log("Usuário não encontrado");
         } else {
             console.log(foundUser.email)
-            Post.find({ 'authorEmail': req.params.email }, function (err, posts) {
-                if (err) {
-                    console.log("Erro ao carregar posts!");
-                } else {
+            Publ.aggregate([
+
+                { $addFields: { arrSize: { $size: "$likes" } } },
+                { $sort: { arrSize: -1 } }
+        
+            ]).exec((err, results) => {
+                const data = results[0];
+                console.log(data);
+        
                     Publ.find({ 'authorEmail': req.params.email }, function (err, publs) {
                         if (err) {
                             console.log("erro ao carregar publs")
@@ -412,19 +417,20 @@ app.get("/profile/:email", function (req, res) {
                             User.find({ friends: { $all: req.params.email } }, function (e, users) {
                                 Member.find({ friends: { $all: req.params.email } }, function (err, count) {
                                     console.log(users.length + count.length)
-                                    res.render("profile", { posts: posts, user: foundUser, publs: publs, email: req.params.email, followers: users.length + count.length });
+                                    res.render("profile", { posts: results, user: foundUser, publs: publs, email: req.params.email, followers: users.length + count.length });
                                 });
                             });
 
                         }
                     });
+                        
                     // console.log("Usuário encontrado");
                     // console.log(foundUser);
 
 
-                }
-
-            });
+                
+            })
+            
         }
     })
 });
